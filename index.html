@@ -99,52 +99,6 @@
 
     .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1050px; }
 
-    .hero-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 3rem;
-    }
-
-    .hero-left { flex: 1; }
-
-    .hero-photo-wrap {
-      flex-shrink: 0;
-      position: relative;
-      width: 210px; height: 210px;
-    }
-
-    .hero-photo-wrap::before {
-      content: \'\';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      background: conic-gradient(var(--accent) 0deg, var(--accent2) 180deg, var(--accent) 360deg);
-      animation: spinRing 5s linear infinite;
-      z-index: 0;
-    }
-
-    .hero-photo-wrap::after {
-      content: \'\';
-      position: absolute;
-      inset: 0px;
-      border-radius: 50%;
-      background: var(--bg);
-      z-index: 1;
-    }
-
-    .hero-photo {
-      position: absolute; z-index: 2;
-      inset: 4px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
-    }
-
-    @keyframes spinRing { to { transform: rotate(360deg); } }
-
     .hero-tag {
       display: inline-block;
       font-size: 0.7rem;
@@ -527,9 +481,7 @@
   <div class="hero-glow"></div>
 
   <div class="hero-content">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-tag">&#x2022; Şu an stajda — Software Persona</div>
+            <div class="hero-tag">&#x2022; Şu an stajda — Software Persona</div>
         <h1>Faruk<br/>Oğuz<br/><span>Eryılmaz</span></h1>
         <p class="hero-desc">
           Ankara Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisi.
@@ -540,11 +492,7 @@
           <a href="#projects" class="btn btn-primary">Projeleri Gör</a>
           <a href="#contact" class="btn btn-outline">İletişime Geç</a>
         </div>
-      </div>
-      <div class="hero-photo-wrap">
-        <img class="hero-photo" src="mezuniyet_kesilmis.jpg" alt="Faruk Oğuz Eryılmaz" />
-      </div>
-    </div>
+
   </div>
 
   <div class="hero-stats">
@@ -805,13 +753,22 @@
 
     <div class="contact-links">
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#8ae5edfff0eff8f3e3e6e7ebf0becaede7ebe3e6a4e9e5e7" class="contact-item">
+      <div id="email-link" class="contact-item" onclick="copyEmail()" style="cursor:pointer;" title="Kopyalamak için tıkla">
         <div class="contact-icon">✉</div>
         <div>
-          <div class="contact-label">E-posta</div>
-          <div class="contact-value"><span class="__cf_email__" data-cfemail="4d222a3837283f342421202c37790d2a202c2421632e2220">[email&#160;protected]</span></div>
+          <div class="contact-label">E-posta <span id="copy-msg" style="color:var(--accent);font-size:0.6rem;margin-left:0.5rem;"></span></div>
+          <div class="contact-value">oguzeryilmaz4@gmail.com</div>
         </div>
-      </a>
+      </div>
+      <script>
+        function copyEmail() {
+          navigator.clipboard.writeText('oguzeryilmaz4@gmail.com').then(function() {
+            var msg = document.getElementById('copy-msg');
+            msg.textContent = '✓ Kopyalandı!';
+            setTimeout(function(){ msg.textContent = ''; }, 2000);
+          });
+        }
+      </script>
       <a href="https://github.com/OguzEryilmazz" target="_blank" class="contact-item">
         <div class="contact-icon">⌥</div>
         <div>
@@ -819,7 +776,7 @@
           <div class="contact-value">github.com/OguzEryilmazz</div>
         </div>
       </a>
-      <a href="tel:+905458421425" class="contact-item">
+      <a href="tel:+905458421425" class="contact-item" title="Telefon numarası - mobil cihazda arayabilirsiniz">
         <div class="contact-icon">☏</div>
         <div>
           <div class="contact-label">Telefon</div>
