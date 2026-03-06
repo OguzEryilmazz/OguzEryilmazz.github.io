@@ -97,7 +97,53 @@
       pointer-events: none;
     }
 
-    .hero-content { position: relative; z-index: 2; max-width: 800px; }
+    .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1050px; }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .hero-left { flex: 1; }
+
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      position: relative;
+      width: 210px; height: 210px;
+    }
+
+    .hero-photo-wrap::before {
+      content: \'\';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(var(--accent) 0deg, var(--accent2) 180deg, var(--accent) 360deg);
+      animation: spinRing 5s linear infinite;
+      z-index: 0;
+    }
+
+    .hero-photo-wrap::after {
+      content: \'\';
+      position: absolute;
+      inset: 0px;
+      border-radius: 50%;
+      background: var(--bg);
+      z-index: 1;
+    }
+
+    .hero-photo {
+      position: absolute; z-index: 2;
+      inset: 4px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+    }
+
+    @keyframes spinRing { to { transform: rotate(360deg); } }
 
     .hero-tag {
       display: inline-block;
@@ -114,7 +160,7 @@
 
     h1 {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(3rem, 6vw, 5.5rem);
       font-weight: 800;
       line-height: 1.0;
       letter-spacing: -2px;
@@ -480,23 +526,23 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
 
-  <div class="hero-content" style="display:flex; align-items:center; gap: 3rem; flex-wrap: wrap;">
-    <div style="flex:1; min-width:280px;">
-      <div class="hero-tag">&#x2022; Şu an stajda — Software Persona</div>
-      <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-        <h1 style="margin-bottom:0;">Faruk Oğuz<br/><span>Eryılmaz</span></h1>
-        <img src="mezuniyet_kesilmis.jpg" alt="Faruk Oğuz Eryılmaz"
-          style="width:140px; height:140px; border-radius:50%; object-fit:cover; object-position: center top;
-                 border: 3px solid var(--accent); box-shadow: 0 0 30px rgba(0,229,160,0.25); flex-shrink:0;" />
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">&#x2022; Şu an stajda — Software Persona</div>
+        <h1>Faruk<br/>Oğuz<br/><span>Eryılmaz</span></h1>
+        <p class="hero-desc">
+          Ankara Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisi.
+          Android geliştirme, AI entegrasyonu ve tam yığın projelerle ilgilenen,
+          takım çalışmasına ve sürekli öğrenmeye odaklı bir mühendis.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">Projeleri Gör</a>
+          <a href="#contact" class="btn btn-outline">İletişime Geç</a>
+        </div>
       </div>
-      <p class="hero-desc">
-        Ankara Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisi.
-        Android geliştirme, AI entegrasyonu ve tam yığın projelerle ilgilenen,
-        takım çalışmasına ve sürekli öğrenmeye odaklı bir mühendis.
-      </p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-primary">Projeleri Gör</a>
-        <a href="#contact" class="btn btn-outline">İletişime Geç</a>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" src="mezuniyet_kesilmis.jpg" alt="Faruk Oğuz Eryılmaz" />
       </div>
     </div>
   </div>
@@ -538,7 +584,7 @@
       </p>
       <p>
         Şu anda <strong style="color: var(--accent)">Software Persona</strong>'da staj yapıyorum.
-        Daha önce <strong>Türk Telekom</strong> şirketinde <strong>Mobil Dijital Kanal Çözümleri</strong> biriminde staj yapma imkanı buldum.
+        Gönüllü olarak <strong>Nesin Matematik Köyü</strong>'nde de aktif rol alıyorum.
       </p>
     </div>
     <div>
@@ -759,11 +805,11 @@
 
     <div class="contact-links">
     <div class="contact-links">
-      <a href="mailto:oguzeryilmaz4@gmail.com" class="contact-item">
+      <a href="/cdn-cgi/l/email-protection#8ae5edfff0eff8f3e3e6e7ebf0becaede7ebe3e6a4e9e5e7" class="contact-item">
         <div class="contact-icon">✉</div>
         <div>
           <div class="contact-label">E-posta</div>
-          <div class="contact-value">oguzeryilmaz4@gmail.com</div>
+          <div class="contact-value"><span class="__cf_email__" data-cfemail="4d222a3837283f342421202c37790d2a202c2421632e2220">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="https://github.com/OguzEryilmazz" target="_blank" class="contact-item">
@@ -793,9 +839,4 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <span>Faruk Oğuz Eryılmaz</span>. Tüm hakları saklıdır.</p>
-  <p>Software Engineer • Ankara Üniversitesi</p>
-</footer>
-
-</body>
-</html>
+  <p>© 2026 <s
