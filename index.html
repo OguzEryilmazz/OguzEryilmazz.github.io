@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,18 +9,31 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #f8f9fb;
-      --text: #0f0f0f;
-      --muted: #555;
-      --yellow: #2563eb;
-      --pink: #1e3a5f;
-      --blue: #2563eb;
-      --green: #059669;
-      --orange: #64748b;
-      --border: #1e293b;
-      --black: #1e293b;
+      --bg: #0f1117;
+      --surface: #1a1f2e;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --navy: #1e3a5f;
+      --green: #10b981;
+      --slate: #64748b;
+      --border: #2d3748;
+      --black: #e2e8f0;
       --display: 'Archivo Black', sans-serif;
       --body: 'Archivo', sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --navy: #1e3a5f;
+      --green: #059669;
+      --slate: #94a3b8;
+      --border: #cbd5e1;
+      --black: #1e293b;
     }
 
     html { scroll-behavior: smooth; }
@@ -30,102 +43,84 @@
       font-family: var(--body);
       font-size: 16px;
       line-height: 1.5;
-      
+      transition: background 0.3s, color 0.3s;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
-      border-bottom: 2px solid var(--black);
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid var(--border);
       background: var(--bg);
+      transition: background 0.3s, border-color 0.3s;
     }
-    .nav-logo {
-      font-family: var(--display);
-      font-size: 1rem;
-      letter-spacing: -0.5px;
-    }
+    .nav-logo { font-family: var(--display); font-size: 1rem; color: var(--text); }
     .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links li { border-left: 2px solid var(--black); }
+    .nav-links li { border-left: 1px solid var(--border); }
     .nav-links a {
-      display: block;
-      padding: 0.4rem 1.1rem;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      display: block; padding: 0.4rem 1rem;
+      color: var(--muted); text-decoration: none;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
       transition: background 0.15s, color 0.15s;
     }
-    .nav-links a:hover { background: var(--black); color: #93c5fd; }
+    .nav-links a:hover { background: var(--blue); color: #fff; }
+
+    .theme-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--muted); padding: 0.3rem 0.8rem;
+      font-family: var(--body); font-size: 0.72rem;
+      cursor: pointer; margin-left: 1rem;
+      border-radius: 4px; transition: all 0.2s;
+    }
+    .theme-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* HERO */
     #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding-top: 60px;
-      border-bottom: 2px solid var(--black);
-      overflow: hidden;
+      min-height: 100vh; display: grid;
+      grid-template-rows: 1fr auto; padding-top: 56px;
+      border-bottom: 1px solid var(--border); overflow: hidden;
     }
-
     .hero-main {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 3rem 2rem 2rem;
-      position: relative;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 3rem 2rem 2rem; position: relative;
     }
-
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: #dbeafe;
-      border: 2px solid #2563eb;
-      padding: 0.35rem 1rem;
-      font-size: 0.72rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      width: fit-content;
-      margin-bottom: 1.5rem;
+      background: rgba(59,130,246,0.1); border: 1px solid var(--blue);
+      padding: 0.35rem 1rem; font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue);
+      width: fit-content; margin-bottom: 1.5rem;
       animation: popIn 0.5s 0.1s ease both;
     }
-    .hero-tag::before { content: '●'; color: #2563eb; font-size: 0.6rem; animation: blink 1.2s infinite; }
+    .hero-tag::before { content: '●'; font-size: 0.6rem; animation: blink 1.2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
     .hero-name {
       font-family: var(--display);
       font-size: clamp(3.5rem, 10vw, 8rem);
-      line-height: 0.9;
-      letter-spacing: -3px;
+      line-height: 0.92; letter-spacing: -2px;
       animation: slideIn 0.6s 0.2s ease both;
     }
-
-    .hero-name .line2 { color: var(--pink); -webkit-text-stroke: 0px; }
-    .hero-name .line3 {
-      color: #94a3b8;
-    }
+    .hero-name .line1 { color: var(--text); }
+    .hero-name .line2 { color: var(--blue); }
+    .hero-name .line3 { color: var(--muted); }
 
     .hero-bottom {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border-top: 1px solid #e5e5e5;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--border);
     }
-
     .hero-bottom-cell {
-      padding: 1.2rem 1.5rem;
-      border-right: 2px solid var(--black);
+      padding: 1.2rem 1.5rem; border-right: 1px solid var(--border);
       animation: fadeUp 0.5s ease both;
     }
     .hero-bottom-cell:last-child { border-right: none; }
-    .hero-bottom-cell:nth-child(1) { animation-delay: 0.3s; }
-    .hero-bottom-cell:nth-child(2) { animation-delay: 0.4s; }
-    .hero-bottom-cell:nth-child(3) { animation-delay: 0.5s; }
-
+    .hero-bottom-cell:nth-child(1){animation-delay:0.3s}
+    .hero-bottom-cell:nth-child(2){animation-delay:0.4s}
+    .hero-bottom-cell:nth-child(3){animation-delay:0.5s}
     .cell-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
-    .cell-value { font-weight: 500; font-size: 0.9rem; }
+    .cell-value { font-weight: 500; font-size: 0.9rem; color: var(--text); }
 
     .hero-cta {
       position: absolute; right: 2rem; bottom: 2rem;
@@ -133,198 +128,153 @@
       animation: fadeUp 0.5s 0.5s ease both;
     }
 
-    /* BUTTONS */
     .btn {
-      display: inline-block;
-      padding: 0.7rem 1.8rem;
-      font-family: var(--body);
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 2px solid var(--black);
-      transition: all 0.15s;
-      
+      display: inline-block; padding: 0.7rem 1.8rem;
+      font-family: var(--body); font-size: 0.8rem; font-weight: 500;
+      text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em;
+      border: 1px solid var(--border); transition: all 0.15s;
     }
-    .btn-fill { background: #1e3a5f; color: #fff; }
-    .btn-fill:hover { background: #2563eb; border-color: #2563eb; color: #fff; }
-    .btn-ghost { background: transparent; color: var(--black); }
-    .btn-ghost:hover { background: var(--black); color: var(--bg); }
+    .btn-fill { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-fill:hover { background: #2563eb; }
+    .btn-ghost { background: transparent; color: var(--text); }
+    .btn-ghost:hover { background: var(--surface); }
 
     /* SECTIONS */
-    .section-wrap { border-bottom: 2px solid var(--black); }
-
+    .section-wrap { border-bottom: 1px solid var(--border); }
     .section-header {
       display: flex; align-items: center;
-      border-bottom: 1px solid var(--black);
-      padding: 0 2rem;
+      border-bottom: 1px solid var(--border); padding: 0 2rem;
     }
     .section-num {
-      font-family: var(--display);
-      font-size: 0.7rem;
-      padding: 0.9rem 1.2rem 0.9rem 0;
-      margin-right: 1.2rem;
-      border-right: 2px solid var(--black);
-      color: var(--muted);
+      font-family: var(--display); font-size: 0.7rem;
+      padding: 0.9rem 1.2rem 0.9rem 0; margin-right: 1.2rem;
+      border-right: 1px solid var(--border); color: var(--muted);
     }
-    .section-title {
-      font-family: var(--display);
-      font-size: 1.3rem;
-      letter-spacing: -0.5px;
-    }
-    .section-accent {
-      margin-left: auto;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-    }
-
+    .section-title { font-family: var(--display); font-size: 1.3rem; letter-spacing: -0.5px; }
+    .section-accent { margin-left: auto; width: 10px; height: 10px; border-radius: 50%; }
     .section-body { padding: 3rem 2rem; }
 
     /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; }
-    .about-text p { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
     .about-text p strong { color: var(--text); font-weight: 500; }
-
-    .about-right {}
     .interest-block { margin-bottom: 2rem; }
     .interest-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.8rem; }
     .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .pill {
-      padding: 0.35rem 1rem;
-      border: 2px solid var(--black);
-      font-size: 0.75rem;
-      font-weight: 500;
+      padding: 0.35rem 1rem; border: 1px solid var(--border);
+      font-size: 0.75rem; font-weight: 500; color: var(--muted);
       transition: all 0.15s;
-      
     }
-    .pill:nth-child(3n+1):hover { background: #dbeafe; color: #1e3a5f; border-color: #2563eb; }
-    .pill:nth-child(3n+2):hover { background: #1e3a5f; color: #fff; border-color: #1e3a5f; }
-    .pill:nth-child(3n+3):hover { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .pill:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* EXPERIENCE */
     .exp-row {
       display: grid; grid-template-columns: 160px 1fr auto;
       gap: 2rem; align-items: start;
-      padding: 1.8rem 0;
-      border-bottom: 1px solid rgba(15,15,15,0.15);
+      padding: 1.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
     }
+    [data-theme="light"] .exp-row { border-bottom-color: rgba(0,0,0,0.06); }
     .exp-row:last-child { border-bottom: none; }
     .exp-period { font-size: 0.75rem; color: var(--muted); padding-top: 0.3rem; }
-    .exp-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem; }
-    .exp-company { font-size: 0.82rem; margin-bottom: 0.6rem; font-weight: 500; color: #2563eb; }
+    .exp-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem; color: var(--text); }
+    .exp-company { font-size: 0.82rem; margin-bottom: 0.6rem; font-weight: 500; color: var(--blue); }
     .exp-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
     .exp-badge {
-      padding: 0.25rem 0.8rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 2px solid var(--black);
-      white-space: nowrap;
+      padding: 0.25rem 0.8rem; font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border: 1px solid var(--border); white-space: nowrap; color: var(--text);
     }
 
     /* EDUCATION */
     .edu-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.8rem 0;
-      border-bottom: 1px solid rgba(15,15,15,0.15);
+      padding: 1.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
     }
+    [data-theme="light"] .edu-row { border-bottom-color: rgba(0,0,0,0.06); }
     .edu-row:last-child { border-bottom: none; }
-    .edu-school { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .edu-school { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; color: var(--text); }
     .edu-dept { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
     .edu-year { font-family: var(--display); font-size: 0.8rem; color: var(--muted); }
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-    .skill-col { border-right: 2px solid var(--black); padding: 2rem; }
+    .skill-col { border-right: 1px solid var(--border); padding: 2rem; }
     .skill-col:last-child { border-right: none; }
-    .skill-col-title { font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .skill-col-title { font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text); }
     .skill-item { margin-bottom: 1rem; }
-    .skill-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+    .skill-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; display: flex; justify-content: space-between; color: var(--text); }
     .skill-pct { font-size: 0.7rem; color: var(--muted); }
-    .skill-track { height: 3px; background: rgba(15,15,15,0.12); }
-    .skill-fill { height: 100%; transition: width 1s ease; }
+    .skill-track { height: 3px; background: var(--border); }
+    .skill-fill { height: 100%; }
+    .cert-box {
+      margin-top: 1.5rem; padding: 1rem;
+      border: 1px solid var(--blue);
+      background: rgba(59,130,246,0.08);
+    }
+    .cert-box .cert-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.3rem; }
+    .cert-box .cert-name { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+    .cert-box .cert-sub { font-size: 0.75rem; color: var(--muted); }
 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
     .project-card {
-      padding: 2rem;
-      border-right: 2px solid var(--black);
-      border-bottom: 2px solid var(--black);
-      transition: background 0.15s;
-      position: relative;
-      overflow: hidden;
+      padding: 2rem; border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s; position: relative; overflow: hidden;
+      background: var(--bg);
     }
     .project-card:nth-child(even) { border-right: none; }
     .project-card:nth-child(n+3) { border-bottom: none; }
-    .project-card:hover { background: #1a1a2e; color: var(--bg); }
-    .project-card:hover .project-desc { color: rgba(250,250,250,0.6); }
-    .project-card:hover .ptag { border-color: rgba(250,250,250,0.3); color: rgba(250,250,250,0.6); }
-    .project-card:hover .project-pub { color: var(--yellow); }
-
+    .project-card:hover { background: var(--surface); }
     .project-idx {
-      font-family: var(--display);
-      font-size: 3rem;
-      color: rgba(15,15,15,0.06);
-      position: absolute; top: 1rem; right: 1.5rem;
-      transition: color 0.15s;
-      line-height: 1;
+      font-family: var(--display); font-size: 3rem;
+      color: var(--border); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
     }
-    .project-card:hover .project-idx { color: rgba(240,235,227,0.06); }
-
-    .project-name { font-family: var(--display); font-size: 1.2rem; margin-bottom: 0.6rem; letter-spacing: -0.3px; }
+    .project-name { font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--text); }
     .project-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
     .ptags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
-    .ptag { padding: 0.2rem 0.65rem; border: 1px solid rgba(15,15,15,0.25); font-size: 0.68rem; color: var(--muted); }
+    .ptag { padding: 0.2rem 0.65rem; border: 1px solid var(--border); font-size: 0.68rem; color: var(--muted); }
     .project-pub { font-size: 0.72rem; font-weight: 600; color: var(--blue); }
 
     /* CONTACT */
-    #contact .section-body { padding: 0; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; }
     .contact-left {
-      padding: 4rem 2rem;
-      border-right: 2px solid var(--black);
-      background: #1e3a5f;
-      color: var(--bg);
+      padding: 4rem 2rem; border-right: 1px solid var(--border);
+      background: #0a0f1a;
+      color: #e2e8f0;
     }
+    [data-theme="light"] .contact-left { background: #0f172a; }
     .contact-left h2 {
-      font-family: var(--display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1;
-      letter-spacing: -1px;
-      margin-bottom: 1.5rem;
+      font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1; letter-spacing: -1px; margin-bottom: 1.5rem; color: #fff;
     }
-    .contact-left h2 span { color: var(--yellow); }
-    .contact-left p { font-size: 0.9rem; font-weight: 300; color: rgba(240,235,227,0.6); line-height: 1.8; }
-
+    .contact-left h2 span { color: var(--blue); }
+    .contact-left p { font-size: 0.9rem; font-weight: 300; color: #94a3b8; line-height: 1.8; }
     .contact-right { display: flex; flex-direction: column; }
     .contact-item {
       display: flex; align-items: center; gap: 1.2rem;
-      padding: 1.4rem 2rem;
-      border-bottom: 2px solid var(--black);
+      padding: 1.4rem 2rem; border-bottom: 1px solid var(--border);
       text-decoration: none; color: var(--text);
-      font-size: 0.88rem;
-      transition: background 0.15s;
-      
+      font-size: 0.88rem; transition: background 0.15s;
+      background: none; border-left: none; border-right: none; border-top: none;
+      font-family: inherit; width: 100%; text-align: left; cursor: pointer;
     }
     .contact-item:last-child { border-bottom: none; }
-    .contact-item:hover { background: #dbeafe; }
-    .ci-icon { font-size: 1.1rem; width: 22px; }
-    .ci-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-    .ci-val { font-weight: 500; font-size: 0.9rem; }
-    .copy-ok { font-size: 0.65rem; color: var(--blue); margin-left: 0.5rem; }
+    .contact-item:hover { background: rgba(59,130,246,0.08); }
+    .ci-icon { font-size: 1rem; width: 22px; }
+    .ci-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem; }
+    .ci-val { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+    .copy-ok { color: var(--green); font-size: 0.65rem; }
 
     /* FOOTER */
     footer {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 2rem;
-      border-top: 1px solid #e5e5e5;
+      padding: 1.2rem 2rem; border-top: 1px solid var(--border);
     }
-    footer p { font-size: 0.72rem; color: #aaa; }
-    .footer-dot { width: 8px; height: 8px; border-radius: 50%; background: #2563eb; }
+    footer p { font-size: 0.72rem; color: var(--muted); }
+    .footer-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
 
-    /* ANIMATIONS */
     @keyframes popIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
     @keyframes slideIn { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
@@ -333,26 +283,21 @@
       nav{padding:0.8rem 1rem;} .nav-links{display:none;}
       .hero-name{font-size:clamp(3rem,15vw,6rem);}
       .hero-bottom{grid-template-columns:1fr;}
-      .hero-bottom-cell{border-right:none;border-bottom:2px solid var(--black);}
-      .hero-cta{position:static;margin-top:1.5rem;}
+      .hero-bottom-cell{border-right:none;border-bottom:1px solid var(--border);}
+      .hero-cta{position:static;margin-top:1.5rem;flex-direction:row;}
       .about-grid{grid-template-columns:1fr;gap:2rem;}
       .skills-grid{grid-template-columns:repeat(2,1fr);}
       .skill-col:nth-child(2n){border-right:none;}
-      .skill-col:nth-child(n+3){border-top:2px solid var(--black);}
+      .skill-col:nth-child(n+3){border-top:1px solid var(--border);}
       .projects-grid{grid-template-columns:1fr;}
       .project-card{border-right:none;}
       .contact-grid{grid-template-columns:1fr;}
       .exp-row{grid-template-columns:1fr;gap:0.5rem;}
-      body{cursor:auto;}
     }
   </style>
 </head>
 <body>
 
-
-
-
-<!-- NAV -->
 <nav>
   <div class="nav-logo">FOE ✦</div>
   <ul class="nav-links">
@@ -363,14 +308,14 @@
     <li><a href="#projects">Projeler</a></li>
     <li><a href="#contact">İletişim</a></li>
   </ul>
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀ Light</button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-main">
     <div class="hero-tag">Yazılım Mühendisi · Şu an stajda @ Software Persona</div>
     <div class="hero-name">
-      <div>FARUK</div>
+      <div class="line1">FARUK</div>
       <div class="line2">OĞUZ</div>
       <div class="line3">ERYILMAZ</div>
     </div>
@@ -382,7 +327,7 @@
   <div class="hero-bottom">
     <div class="hero-bottom-cell">
       <div class="cell-label">Konum</div>
-      <div class="cell-value">Çankaya, Ankara 📍</div>
+      <div class="cell-value">Çankaya, Ankara</div>
     </div>
     <div class="hero-bottom-cell">
       <div class="cell-label">Üniversite</div>
@@ -395,12 +340,11 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <div class="section-wrap" id="about">
   <div class="section-header">
     <span class="section-num">01</span>
     <span class="section-title">Hakkımda</span>
-    <div class="section-accent" style="background:#2563eb;"></div>
+    <div class="section-accent" style="background:var(--blue);"></div>
   </div>
   <div class="section-body">
     <div class="about-grid">
@@ -409,17 +353,13 @@
         <p>Şu anda <strong>Software Persona</strong>'da staj yapıyor; <strong>Türk Telekom</strong>'da Mobil Dijital Kanal Çözümleri ekibinde 6 aylık kurumsal staj deneyimi kazandım.</p>
         <p>TÜBİTAK destekli araştırma projesinde yer aldım ve sonuçlarımı <strong>HCI-E 2025</strong> konferansında Azerbaycan'da sundum.</p>
       </div>
-      <div class="about-right">
+      <div>
         <div class="interest-block">
           <div class="interest-title">İlgi Alanları</div>
           <div class="pill-row">
-            <span class="pill">Android</span>
-            <span class="pill">Yapay Zeka</span>
-            <span class="pill">Mobil</span>
-            <span class="pill">HCI</span>
-            <span class="pill">RESTful API</span>
-            <span class="pill">Matematik</span>
-            <span class="pill">Open Source</span>
+            <span class="pill">Android</span><span class="pill">Yapay Zeka</span>
+            <span class="pill">Mobil</span><span class="pill">HCI</span>
+            <span class="pill">RESTful API</span><span class="pill">Matematik</span>
           </div>
         </div>
         <div class="interest-block">
@@ -435,12 +375,11 @@
   </div>
 </div>
 
-<!-- EXPERIENCE -->
 <div class="section-wrap" id="experience">
   <div class="section-header">
     <span class="section-num">02</span>
     <span class="section-title">Deneyim</span>
-    <div class="section-accent" style="background:#1e3a5f;"></div>
+    <div class="section-accent" style="background:var(--green);"></div>
   </div>
   <div class="section-body">
     <div class="exp-row">
@@ -450,14 +389,14 @@
         <div class="exp-company">Software Persona</div>
         <div class="exp-desc">Yazılım geliştirme süreçlerine aktif katkı sağlıyorum. Gerçek dünya projeleri üzerinde mühendislik pratiklerini uyguluyorum.</div>
       </div>
-      <div class="exp-badge" style="background:#059669;border-color:#059669;color:#fff;">Aktif</div>
+      <div class="exp-badge" style="background:rgba(16,185,129,0.1);border-color:var(--green);color:var(--green);">Aktif</div>
     </div>
     <div class="exp-row">
       <div class="exp-period">Mar 2025 — Eki 2025</div>
       <div>
         <div class="exp-role">Stajyer — Mobil Dijital Kanal Çözümleri</div>
         <div class="exp-company">Türk Telekom</div>
-        <div class="exp-desc">Mobil uygulama geliştirme süreçlerine katkı sağladım. Kurumsal ölçekte yazılım mühendisliği deneyimi kazandım. 6 ay.</div>
+        <div class="exp-desc">Mobil uygulama geliştirme süreçlerine katkı sağladım. Kurumsal ölçekte yazılım mühendisliği deneyimi kazandım.</div>
       </div>
       <div class="exp-badge">6 Ay</div>
     </div>
@@ -473,78 +412,69 @@
   </div>
 </div>
 
-<!-- EDUCATION -->
 <div class="section-wrap" id="education">
   <div class="section-header">
     <span class="section-num">03</span>
     <span class="section-title">Eğitim</span>
-    <div class="section-accent" style="background:#3b82f6;"></div>
+    <div class="section-accent" style="background:var(--blue);"></div>
   </div>
   <div class="section-body">
     <div class="edu-row">
-      <div>
-        <div class="edu-school">Ankara Üniversitesi</div>
-        <div class="edu-dept">Yazılım Mühendisliği · 3. Sınıf</div>
-      </div>
+      <div><div class="edu-school">Ankara Üniversitesi</div><div class="edu-dept">Yazılım Mühendisliği · 3. Sınıf</div></div>
       <div class="edu-year">2023 — 2027</div>
     </div>
     <div class="edu-row">
-      <div>
-        <div class="edu-school">Validebağ Fen Lisesi</div>
-        <div class="edu-dept">İstanbul</div>
-      </div>
+      <div><div class="edu-school">Validebağ Fen Lisesi</div><div class="edu-dept">İstanbul</div></div>
       <div class="edu-year">2019 — 2023</div>
     </div>
   </div>
 </div>
 
-<!-- SKILLS -->
 <div class="section-wrap" id="skills">
   <div class="section-header">
     <span class="section-num">04</span>
     <span class="section-title">Yetenekler</span>
-    <div class="section-accent" style="background:#64748b;"></div>
+    <div class="section-accent" style="background:var(--slate);"></div>
   </div>
   <div class="skills-grid">
     <div class="skill-col">
       <div class="skill-col-title">Diller</div>
-      <div class="skill-item"><div class="skill-name"><span>Kotlin</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:#2563eb;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Python</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:#3b82f6;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Java</span><span class="skill-pct">65%</span></div><div class="skill-track"><div class="skill-fill" style="width:65%;background:#64748b;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>HTML/CSS</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:#059669;"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Kotlin</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Python</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Java</span><span class="skill-pct">65%</span></div><div class="skill-track"><div class="skill-fill" style="width:65%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>HTML/CSS</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:var(--blue);"></div></div></div>
     </div>
     <div class="skill-col">
       <div class="skill-col-title">Framework</div>
-      <div class="skill-item"><div class="skill-name"><span>Jetpack Compose</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:#2563eb;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Room DB</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:#3b82f6;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>RESTful API</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:#64748b;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Flask/FastAPI</span><span class="skill-pct">60%</span></div><div class="skill-track"><div class="skill-fill" style="width:60%;background:#059669;"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Jetpack Compose</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Room DB</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>RESTful API</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Flask/FastAPI</span><span class="skill-pct">60%</span></div><div class="skill-track"><div class="skill-fill" style="width:60%;background:var(--blue);"></div></div></div>
     </div>
     <div class="skill-col">
       <div class="skill-col-title">Araçlar</div>
-      <div class="skill-item"><div class="skill-name"><span>Android Studio</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:#2563eb;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Git / GitHub</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:#3b82f6;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>VS Code</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:#64748b;"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Android Studio</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Git / GitHub</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>VS Code</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
     </div>
     <div class="skill-col">
-      <div class="skill-col-title">Diller & Diğer</div>
-      <div class="skill-item"><div class="skill-name"><span>Türkçe</span><span class="skill-pct">Ana dil</span></div><div class="skill-track"><div class="skill-fill" style="width:100%;background:#059669;"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>İngilizce</span><span class="skill-pct">B1+</span></div><div class="skill-track"><div class="skill-fill" style="width:55%;background:#3b82f6;"></div></div></div>
-      <div style="margin-top:1.5rem; padding:1rem; border:1px solid #2563eb; background:#dbeafe;">
-        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">Sertifika</div>
-        <div style="font-weight:600;font-size:0.85rem;">HCI-E 2025</div>
-        <div style="font-size:0.75rem;color:var(--muted);">Certificate of Presentation · Azerbaijan</div>
+      <div class="skill-col-title">Diller</div>
+      <div class="skill-item"><div class="skill-name"><span>Türkçe</span><span class="skill-pct">Ana dil</span></div><div class="skill-track"><div class="skill-fill" style="width:100%;background:var(--green);"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>İngilizce</span><span class="skill-pct">B1+</span></div><div class="skill-track"><div class="skill-fill" style="width:55%;background:var(--blue);"></div></div></div>
+      <div class="cert-box">
+        <div class="cert-label">Sertifika</div>
+        <div class="cert-name">HCI-E 2025</div>
+        <div class="cert-sub">Certificate of Presentation · Azerbaijan</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div class="section-wrap" id="projects">
   <div class="section-header">
     <span class="section-num">05</span>
     <span class="section-title">Projeler</span>
-    <div class="section-accent" style="background:#059669;"></div>
+    <div class="section-accent" style="background:var(--blue);"></div>
   </div>
   <div class="projects-grid">
     <div class="project-card">
@@ -575,12 +505,11 @@
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="section-wrap" id="contact">
   <div class="section-header">
     <span class="section-num">06</span>
     <span class="section-title">İletişim</span>
-    <div class="section-accent" style="background:#3b82f6;"></div>
+    <div class="section-accent" style="background:var(--blue);"></div>
   </div>
   <div class="section-body" style="padding:0;">
     <div class="contact-grid">
@@ -589,7 +518,7 @@
         <p>Bir proje fikriniz mi var? Staj veya iş birliği teklifleri için her zaman ulaşabilirsiniz. En kısa sürede dönüş yapıyorum.</p>
       </div>
       <div class="contact-right">
-        <button class="contact-item" onclick="copyEmail()" style="background:none;border:none;font-family:inherit;width:100%;text-align:left;">
+        <button class="contact-item" onclick="copyEmail()">
           <span class="ci-icon">✉</span>
           <div>
             <div class="ci-label">E-posta <span class="copy-ok" id="copy-msg"></span></div>
@@ -603,14 +532,14 @@
             <div class="ci-val">OguzEryilmazz</div>
           </div>
         </a>
-        <div class="contact-item" style="">
+        <div class="contact-item">
           <span class="ci-icon">☏</span>
           <div>
             <div class="ci-label">Telefon</div>
             <div class="ci-val">0545 842 14 25</div>
           </div>
         </div>
-        <div class="contact-item" style="">
+        <div class="contact-item">
           <span class="ci-icon">◎</span>
           <div>
             <div class="ci-label">Konum</div>
@@ -629,11 +558,23 @@
 </footer>
 
 <script>
-  function copyEmail(){
-    navigator.clipboard.writeText('oguzeryilmaz4@gmail.com').then(function(){
-      var m=document.getElementById('copy-msg');
-      m.textContent='✓ Kopyalandı';
-      setTimeout(function(){m.textContent='';},2000);
+  function toggleTheme() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-btn');
+    if (root.getAttribute('data-theme') === 'dark') {
+      root.setAttribute('data-theme', 'light');
+      btn.textContent = '🌙 Dark';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      btn.textContent = '☀ Light';
+    }
+  }
+
+  function copyEmail() {
+    navigator.clipboard.writeText('oguzeryilmaz4@gmail.com').then(function() {
+      var m = document.getElementById('copy-msg');
+      m.textContent = '✓ Kopyalandı';
+      setTimeout(function(){ m.textContent = ''; }, 2000);
     });
   }
 </script>
