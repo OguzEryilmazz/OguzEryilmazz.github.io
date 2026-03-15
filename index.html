@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="dark">
+<html lang="tr" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,339 +14,369 @@
       --text: #e2e8f0;
       --muted: #94a3b8;
       --blue: #3b82f6;
-      --navy: #1e3a5f;
       --green: #10b981;
-      --slate: #64748b;
       --border: #2d3748;
-      --black: #e2e8f0;
-      --display: 'Archivo Black', sans-serif;
-      --body: 'Archivo', sans-serif;
+      --max: 1100px;
     }
 
     [data-theme="light"] {
-      --bg: #f8f9fb;
-      --surface: #ffffff;
+      --bg: #e8ebef;
+      --surface: #dde1e7;
       --text: #1e293b;
       --muted: #64748b;
       --blue: #2563eb;
-      --navy: #1e3a5f;
       --green: #059669;
-      --slate: #94a3b8;
-      --border: #cbd5e1;
-      --black: #1e293b;
+      --border: #c8cdd5;
     }
 
     html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--body);
-      font-size: 16px;
-      line-height: 1.5;
+      font-family: 'Archivo', sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.9rem 2rem;
-      border-bottom: 1px solid var(--border);
       background: var(--bg);
-      transition: background 0.3s, border-color 0.3s;
+      transition: background 0.3s;
     }
-    .nav-logo { font-family: var(--display); font-size: 1rem; color: var(--text); }
-    .nav-links { display: flex; gap: 0; list-style: none; }
-    .nav-links li { border-left: 1px solid var(--border); }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-family: 'Archivo Black', sans-serif; font-size: 1rem; color: var(--text); }
+    .nav-links { display: flex; gap: 0.2rem; list-style: none; }
     .nav-links a {
-      display: block; padding: 0.4rem 1rem;
+      display: block; padding: 0.35rem 0.9rem;
       color: var(--muted); text-decoration: none;
       font-size: 0.72rem; font-weight: 500;
       letter-spacing: 0.05em; text-transform: uppercase;
+      border-radius: 4px;
       transition: background 0.15s, color 0.15s;
     }
     .nav-links a:hover { background: var(--blue); color: #fff; }
-
     .theme-btn {
       background: none; border: 1px solid var(--border);
-      color: var(--muted); padding: 0.3rem 0.8rem;
-      font-family: var(--body); font-size: 0.72rem;
-      cursor: pointer; margin-left: 1rem;
-      border-radius: 4px; transition: all 0.2s;
+      color: var(--muted); padding: 0.3rem 0.9rem;
+      font-family: 'Archivo', sans-serif; font-size: 0.72rem;
+      cursor: pointer; border-radius: 4px; transition: all 0.2s;
     }
     .theme-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* HERO */
     #hero {
-      min-height: 100vh; display: grid;
-      grid-template-rows: 1fr auto; padding-top: 56px;
-      border-bottom: 1px solid var(--border); overflow: hidden;
+      min-height: 100vh;
+      padding-top: 56px;
+      display: flex; flex-direction: column;
     }
     .hero-main {
-      display: flex; flex-direction: column;
-      justify-content: center; padding: 3rem 2rem 2rem; position: relative;
+      flex: 1;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+      padding: 5rem 2rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
     }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(59,130,246,0.1); border: 1px solid var(--blue);
-      padding: 0.35rem 1rem; font-size: 0.72rem; font-weight: 500;
+      padding: 0.35rem 1rem; font-size: 0.75rem; font-weight: 500;
       text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue);
-      width: fit-content; margin-bottom: 1.5rem;
+      width: fit-content; margin-bottom: 2.5rem; border-radius: 4px;
       animation: popIn 0.5s 0.1s ease both;
     }
-    .hero-tag::before { content: '●'; font-size: 0.6rem; animation: blink 1.2s infinite; }
+    .hero-tag::before { content: '●'; font-size: 0.55rem; animation: blink 1.2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+    .hero-layout { display: flex; align-items: center; gap: 5rem; }
+    .hero-text-block { flex: 1; }
     .hero-name {
-      font-family: var(--display);
+      font-family: 'Archivo Black', sans-serif;
       font-size: clamp(3.5rem, 10vw, 8rem);
-      line-height: 0.92; letter-spacing: -2px;
+      line-height: 0.9; letter-spacing: -2px;
       animation: slideIn 0.6s 0.2s ease both;
+      margin-bottom: 2.5rem;
     }
     .hero-name .line1 { color: var(--text); }
     .hero-name .line2 { color: var(--blue); }
     .hero-name .line3 { color: var(--muted); }
 
-    .hero-bottom {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      border-top: 1px solid var(--border);
+    .hero-photo-wrap { flex-shrink: 0; animation: fadeUp 0.6s 0.35s ease both; align-self: flex-start; margin-top: 1rem; }
+    .hero-photo {
+      width: 250px; height: 310px;
+      object-fit: cover; object-position: center top;
+      border-radius: 14px; display: block;
+      filter: grayscale(10%) contrast(1.05);
+      transition: filter 0.3s, transform 0.3s;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
     }
-    .hero-bottom-cell {
-      padding: 1.2rem 1.5rem; border-right: 1px solid var(--border);
-      animation: fadeUp 0.5s ease both;
-    }
-    .hero-bottom-cell:last-child { border-right: none; }
-    .hero-bottom-cell:nth-child(1){animation-delay:0.3s}
-    .hero-bottom-cell:nth-child(2){animation-delay:0.4s}
-    .hero-bottom-cell:nth-child(3){animation-delay:0.5s}
-    .cell-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
-    .cell-value { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+    .hero-photo:hover { filter: grayscale(0%); transform: translateY(-4px); }
 
     .hero-cta {
-      position: absolute; right: 2rem; bottom: 2rem;
-      display: flex; flex-direction: column; gap: 0.6rem;
-      animation: fadeUp 0.5s 0.5s ease both;
+      display: flex; gap: 0.8rem; flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.45s ease both;
     }
-
     .btn {
-      display: inline-block; padding: 0.7rem 1.8rem;
-      font-family: var(--body); font-size: 0.8rem; font-weight: 500;
+      display: inline-block; padding: 0.75rem 1.8rem;
+      font-family: 'Archivo', sans-serif; font-size: 0.82rem; font-weight: 500;
       text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em;
-      border: 1px solid var(--border); transition: all 0.15s;
+      border-radius: 6px; transition: all 0.15s;
     }
-    .btn-fill { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .btn-fill:hover { background: #2563eb; }
-    .btn-ghost { background: transparent; color: var(--text); }
+    .btn-fill { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
+    .btn-fill:hover { opacity: 0.88; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-ghost:hover { background: var(--surface); }
 
+    .hero-bottom {
+      max-width: var(--max); margin: 0 auto; width: 100%;
+      padding: 2rem 2rem 2.5rem;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.5s ease both;
+    }
+    .cell-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.25rem; }
+    .cell-value { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+
     /* SECTIONS */
-    .section-wrap { border-bottom: 1px solid var(--border); }
-    .section-header {
-      display: flex; align-items: center;
-      border-bottom: 1px solid var(--border); padding: 0 2rem;
+    .wrap {
+      max-width: var(--max); margin: 0 auto;
+      padding: 4rem 2rem;
     }
-    .section-num {
-      font-family: var(--display); font-size: 0.7rem;
-      padding: 0.9rem 1.2rem 0.9rem 0; margin-right: 1.2rem;
-      border-right: 1px solid var(--border); color: var(--muted);
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 1.3rem; letter-spacing: -0.5px;
+      margin-bottom: 2.5rem; color: var(--text);
     }
-    .section-title { font-family: var(--display); font-size: 1.3rem; letter-spacing: -0.5px; }
-    .section-accent { margin-left: auto; width: 10px; height: 10px; border-radius: 50%; }
-    .section-body { padding: 3rem 2rem; }
 
     /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; }
-    .about-text p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem; }
     .about-text p strong { color: var(--text); font-weight: 500; }
     .interest-block { margin-bottom: 2rem; }
-    .interest-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.8rem; }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .interest-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.8rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .pill {
-      padding: 0.35rem 1rem; border: 1px solid var(--border);
-      font-size: 0.75rem; font-weight: 500; color: var(--muted);
-      transition: all 0.15s;
+      padding: 0.35rem 0.9rem; border: 1px solid var(--border);
+      border-radius: 20px; font-size: 0.78rem; font-weight: 500; color: var(--muted);
+      transition: all 0.15s; cursor: default;
     }
     .pill:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* EXPERIENCE */
     .exp-row {
-      display: grid; grid-template-columns: 160px 1fr auto;
-      gap: 2rem; align-items: start;
-      padding: 1.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: grid; grid-template-columns: 170px 1fr auto;
+      gap: 2rem; align-items: start; padding: 2rem 0;
     }
-    [data-theme="light"] .exp-row { border-bottom-color: rgba(0,0,0,0.06); }
-    .exp-row:last-child { border-bottom: none; }
-    .exp-period { font-size: 0.75rem; color: var(--muted); padding-top: 0.3rem; }
-    .exp-role { font-weight: 600; font-size: 1rem; margin-bottom: 0.2rem; color: var(--text); }
-    .exp-company { font-size: 0.82rem; margin-bottom: 0.6rem; font-weight: 500; color: var(--blue); }
-    .exp-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+    .exp-row + .exp-row { border-top: 1px solid rgba(128,128,128,0.12); }
+    .exp-period { font-size: 0.78rem; color: var(--muted); padding-top: 0.3rem; }
+    .exp-role { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; color: var(--text); }
+    .exp-company { font-size: 0.85rem; margin-bottom: 0.6rem; font-weight: 500; color: var(--blue); }
+    .exp-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.8; }
     .exp-badge {
-      padding: 0.25rem 0.8rem; font-size: 0.65rem; font-weight: 700;
+      padding: 0.25rem 0.85rem; font-size: 0.65rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.06em;
-      border: 1px solid var(--border); white-space: nowrap; color: var(--text);
+      background: var(--surface); border-radius: 20px;
+      white-space: nowrap; color: var(--text);
     }
 
     /* EDUCATION */
     .edu-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 1.5rem 0;
     }
-    [data-theme="light"] .edu-row { border-bottom-color: rgba(0,0,0,0.06); }
-    .edu-row:last-child { border-bottom: none; }
+    .edu-row + .edu-row { border-top: 1px solid rgba(128,128,128,0.12); }
     .edu-school { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; color: var(--text); }
-    .edu-dept { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
-    .edu-year { font-family: var(--display); font-size: 0.8rem; color: var(--muted); }
+    .edu-dept { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+    .edu-year { font-family: 'Archivo Black', sans-serif; font-size: 0.82rem; color: var(--muted); }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-    .skill-col { border-right: 1px solid var(--border); padding: 2rem; }
-    .skill-col:last-child { border-right: none; }
-    .skill-col-title { font-family: var(--display); font-size: 0.75rem; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text); }
-    .skill-item { margin-bottom: 1rem; }
-    .skill-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; display: flex; justify-content: space-between; color: var(--text); }
-    .skill-pct { font-size: 0.7rem; color: var(--muted); }
-    .skill-track { height: 3px; background: var(--border); }
-    .skill-fill { height: 100%; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .skill-col { padding: 1.5rem 1.8rem; background: var(--surface); border-radius: 14px; }
+    .skill-col-title { font-family: 'Archivo Black', sans-serif; font-size: 0.72rem; text-transform: uppercase; margin-bottom: 1.2rem; color: var(--text); }
+    .skill-item { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+    .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .skill-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
     .cert-box {
-      margin-top: 1.5rem; padding: 1rem;
-      border: 1px solid var(--blue);
-      background: rgba(59,130,246,0.08);
+      margin-top: 1.2rem; padding: 1rem; border-radius: 8px;
+      border: 1px solid var(--blue); background: rgba(59,130,246,0.08);
     }
-    .cert-box .cert-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.3rem; }
-    .cert-box .cert-name { font-weight: 600; font-size: 0.85rem; color: var(--text); }
-    .cert-box .cert-sub { font-size: 0.75rem; color: var(--muted); }
+    .cert-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.25rem; }
+    .cert-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+    .cert-sub { font-size: 0.75rem; color: var(--muted); }
 
     /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .project-card {
-      padding: 2rem; border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s; position: relative; overflow: hidden;
-      background: var(--bg);
+      padding: 2rem; border-radius: 14px;
+      background: var(--surface);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+      text-decoration: none; display: block; color: inherit;
     }
-    .project-card:nth-child(even) { border-right: none; }
-    .project-card:nth-child(n+3) { border-bottom: none; }
-    .project-card:hover { background: var(--surface); }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
     .project-idx {
-      font-family: var(--display); font-size: 3rem;
-      color: var(--border); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+      font-family: 'Archivo Black', sans-serif; font-size: 2.5rem;
+      color: var(--border); position: absolute; top: 1rem; right: 1.2rem; line-height: 1;
     }
-    .project-name { font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--text); }
-    .project-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
+    .project-name { font-family: 'Archivo Black', sans-serif; font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--text); }
+    .project-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
     .ptags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
-    .ptag { padding: 0.2rem 0.65rem; border: 1px solid var(--border); font-size: 0.68rem; color: var(--muted); }
-    .project-pub { font-size: 0.72rem; font-weight: 600; color: var(--blue); }
+    .ptag { padding: 0.2rem 0.65rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.7rem; color: var(--muted); }
+    .project-pub { font-size: 0.75rem; font-weight: 600; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; }
 
     /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; }
-    .contact-left {
-      padding: 4rem 2rem; border-right: 1px solid var(--border);
-      background: #0a0f1a;
-      color: #e2e8f0;
+    .contact-wrap {
+      max-width: var(--max); margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
     }
-    [data-theme="light"] .contact-left { background: #0f172a; }
-    .contact-left h2 {
-      font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4rem);
-      line-height: 1; letter-spacing: -1px; margin-bottom: 1.5rem; color: #fff;
+    .contact-headline {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95; letter-spacing: -2px;
+      margin-bottom: 1.2rem; color: var(--text);
     }
-    .contact-left h2 span { color: var(--blue); }
-    .contact-left p { font-size: 0.9rem; font-weight: 300; color: #94a3b8; line-height: 1.8; }
-    .contact-right { display: flex; flex-direction: column; }
-    .contact-item {
-      display: flex; align-items: center; gap: 1.2rem;
-      padding: 1.4rem 2rem; border-bottom: 1px solid var(--border);
-      text-decoration: none; color: var(--text);
-      font-size: 0.88rem; transition: background 0.15s;
-      background: none; border-left: none; border-right: none; border-top: none;
-      font-family: inherit; width: 100%; text-align: left; cursor: pointer;
+    .contact-headline span { color: var(--blue); }
+    .wave { display: inline-block; animation: wave 2s infinite; }
+    @keyframes wave { 0%,100%{transform:rotate(0deg)} 25%{transform:rotate(15deg)} 75%{transform:rotate(-10deg)} }
+    .contact-sub {
+      font-size: 1rem; color: var(--muted); font-weight: 300;
+      max-width: 460px; margin: 0 auto 3rem; line-height: 1.8;
     }
-    .contact-item:last-child { border-bottom: none; }
-    .contact-item:hover { background: rgba(59,130,246,0.08); }
-    .ci-icon { font-size: 1rem; width: 22px; }
-    .ci-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.4rem; }
-    .ci-val { font-weight: 500; font-size: 0.9rem; color: var(--text); }
-    .copy-ok { color: var(--green); font-size: 0.65rem; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+    .contact-card {
+      display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+      padding: 1.5rem 2rem; min-width: 140px; border-radius: 14px;
+      background: var(--surface); text-decoration: none;
+      color: var(--text); font-family: 'Archivo', sans-serif;
+      cursor: pointer; border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .contact-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue); transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.2s; z-index: 0; border-radius: 14px;
+    }
+    .contact-card:hover::before { transform: scaleY(1); }
+    .contact-card:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,0.25); }
+    .contact-card > * { position: relative; z-index: 1; }
+    .cc-icon { font-size: 1.6rem; line-height: 1; }
+    .cc-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.65; }
+    .cc-val { font-size: 0.82rem; font-weight: 600; }
+    .copy-ok { font-size: 0.65rem; color: var(--green); min-height: 1em; display: block; }
 
     /* FOOTER */
     footer {
+      max-width: var(--max); margin: 0 auto;
+      padding: 1.5rem 2rem;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 2rem; border-top: 1px solid var(--border);
     }
     footer p { font-size: 0.72rem; color: var(--muted); }
-    .footer-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .footer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
 
-    @keyframes popIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
-    @keyframes slideIn { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
+    /* ANIMATIONS */
+    @keyframes popIn  { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+    @keyframes slideIn{ from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-    @media(max-width:768px){
-      nav{padding:0.8rem 1rem;} .nav-links{display:none;}
-      .hero-name{font-size:clamp(3rem,15vw,6rem);}
-      .hero-bottom{grid-template-columns:1fr;}
-      .hero-bottom-cell{border-right:none;border-bottom:1px solid var(--border);}
-      .hero-cta{position:static;margin-top:1.5rem;flex-direction:row;}
-      .about-grid{grid-template-columns:1fr;gap:2rem;}
-      .skills-grid{grid-template-columns:repeat(2,1fr);}
-      .skill-col:nth-child(2n){border-right:none;}
-      .skill-col:nth-child(n+3){border-top:1px solid var(--border);}
-      .projects-grid{grid-template-columns:1fr;}
-      .project-card{border-right:none;}
-      .contact-grid{grid-template-columns:1fr;}
-      .exp-row{grid-template-columns:1fr;gap:0.5rem;}
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      :root { --max: 100%; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .hero-photo { width: 200px; height: 250px; }
+    }
+
+    @media(max-width:768px) {
+      .nav-links { display: none; }
+      .hero-main, .wrap, .contact-wrap, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .hero-bottom { padding-left: 1.2rem; padding-right: 1.2rem; gap: 1.5rem; }
+      .hero-layout { flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
+      .hero-photo { width: 120px; height: 150px; }
+      .hero-name { font-size: clamp(2.8rem, 14vw, 5rem); }
+      .hero-cta { flex-wrap: wrap; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .exp-row { grid-template-columns: 1fr; gap: 0.4rem; }
+      .exp-badge { width: fit-content; }
+      .skills-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-card { min-width: calc(50% - 0.5rem); }
+      .contact-headline { font-size: clamp(2.5rem, 12vw, 4rem); }
+      footer { flex-wrap: wrap; gap: 0.5rem; }
+    }
+
+    @media(max-width:420px) {
+      .hero-name { font-size: clamp(2.4rem, 16vw, 3.5rem); }
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-card { min-width: 100%; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">FOE ✦</div>
-  <ul class="nav-links">
-    <li><a href="#about">Hakkımda</a></li>
-    <li><a href="#experience">Deneyim</a></li>
-    <li><a href="#education">Eğitim</a></li>
-    <li><a href="#skills">Yetenekler</a></li>
-    <li><a href="#projects">Projeler</a></li>
-    <li><a href="#contact">İletişim</a></li>
-  </ul>
-  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀ Light</button>
+  <div class="nav-inner">
+    <div class="nav-logo">FOE ✦</div>
+    <ul class="nav-links">
+      <li><a href="#about">Hakkımda</a></li>
+      <li><a href="#experience">Deneyim</a></li>
+      <li><a href="#education">Eğitim</a></li>
+      <li><a href="#skills">Yetenekler</a></li>
+      <li><a href="#projects">Projeler</a></li>
+      <li><a href="#contact">İletişim</a></li>
+    </ul>
+    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
+  </div>
 </nav>
 
+<!-- HERO -->
 <section id="hero">
   <div class="hero-main">
     <div class="hero-tag">Yazılım Mühendisi · Şu an stajda @ Software Persona</div>
-    <div class="hero-name">
-      <div class="line1">FARUK</div>
-      <div class="line2">OĞUZ</div>
-      <div class="line3">ERYILMAZ</div>
-    </div>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-fill">Projeleri Gör →</a>
-      <a href="#contact" class="btn btn-ghost">İletişime Geç</a>
+    <div class="hero-layout">
+      <div class="hero-text-block">
+        <div class="hero-name">
+          <div class="line1">FARUK</div>
+          <div class="line2">OĞUZ</div>
+          <div class="line3">ERYILMAZ</div>
+        </div>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-fill">Projeleri Gör</a>
+          <a href="#contact" class="btn btn-ghost">İletişime Geç</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="mezuniyet_kesilmis.jpg" alt="Faruk Oğuz Eryılmaz"
+          class="hero-photo" onerror="this.style.display='none'" />
+      </div>
     </div>
   </div>
   <div class="hero-bottom">
-    <div class="hero-bottom-cell">
+    <div>
       <div class="cell-label">Konum</div>
       <div class="cell-value">Çankaya, Ankara</div>
     </div>
-    <div class="hero-bottom-cell">
+    <div>
       <div class="cell-label">Üniversite</div>
       <div class="cell-value">Ankara Üniversitesi · 3. Sınıf</div>
     </div>
-    <div class="hero-bottom-cell">
+    <div>
       <div class="cell-label">Odak Alanı</div>
       <div class="cell-value">Android · AI · Mobile</div>
     </div>
   </div>
 </section>
 
-<div class="section-wrap" id="about">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <span class="section-title">Hakkımda</span>
-    <div class="section-accent" style="background:var(--blue);"></div>
-  </div>
-  <div class="section-body">
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-title">Hakkımda</div>
     <div class="about-grid">
       <div class="about-text">
         <p>Ankara Üniversitesi <strong>Yazılım Mühendisliği</strong> bölümünde 3. sınıf öğrencisiyim. Birden fazla projeyi eş zamanlı yönetme ve son tarihlere sadık kalma konusunda deneyimliyim.</p>
@@ -357,9 +387,12 @@
         <div class="interest-block">
           <div class="interest-title">İlgi Alanları</div>
           <div class="pill-row">
-            <span class="pill">Android</span><span class="pill">Yapay Zeka</span>
-            <span class="pill">Mobil</span><span class="pill">HCI</span>
-            <span class="pill">RESTful API</span><span class="pill">Matematik</span>
+            <span class="pill">Android</span>
+            <span class="pill">Yapay Zeka</span>
+            <span class="pill">Mobil</span>
+            <span class="pill">HCI</span>
+            <span class="pill">RESTful API</span>
+            <span class="pill">Matematik</span>
           </div>
         </div>
         <div class="interest-block">
@@ -373,23 +406,20 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section-wrap" id="experience">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <span class="section-title">Deneyim</span>
-    <div class="section-accent" style="background:var(--green);"></div>
-  </div>
-  <div class="section-body">
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-title">Deneyim</div>
     <div class="exp-row">
-      <div class="exp-period">2025 — Devam Ediyor</div>
+      <div class="exp-period">2026 — Devam Ediyor</div>
       <div>
         <div class="exp-role">Software Engineering Intern</div>
         <div class="exp-company">Software Persona</div>
         <div class="exp-desc">Yazılım geliştirme süreçlerine aktif katkı sağlıyorum. Gerçek dünya projeleri üzerinde mühendislik pratiklerini uyguluyorum.</div>
       </div>
-      <div class="exp-badge" style="background:rgba(16,185,129,0.1);border-color:var(--green);color:var(--green);">Aktif</div>
+      <div class="exp-badge" style="background:rgba(16,185,129,0.15);color:var(--green);">Aktif</div>
     </div>
     <div class="exp-row">
       <div class="exp-period">Mar 2025 — Eki 2025</div>
@@ -405,152 +435,163 @@
       <div>
         <div class="exp-role">Gönüllü</div>
         <div class="exp-company">Nesin Matematik Köyü</div>
-        <div class="exp-desc">Matematik eğitimi ve topluluk etkinliklerinde 2 ay gönüllü olarak destek sağladım.</div>
+        <div class="exp-desc">Matematik eğitimi ve topluluk etkinliklerinde gönüllü olarak destek sağladım.</div>
       </div>
       <div class="exp-badge">2 Ay</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section-wrap" id="education">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <span class="section-title">Eğitim</span>
-    <div class="section-accent" style="background:var(--blue);"></div>
-  </div>
-  <div class="section-body">
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-title">Eğitim</div>
     <div class="edu-row">
-      <div><div class="edu-school">Ankara Üniversitesi</div><div class="edu-dept">Yazılım Mühendisliği · 3. Sınıf</div></div>
+      <div>
+        <div class="edu-school">Ankara Üniversitesi</div>
+        <div class="edu-dept">Yazılım Mühendisliği · 3. Sınıf</div>
+      </div>
       <div class="edu-year">2023 — 2027</div>
     </div>
     <div class="edu-row">
-      <div><div class="edu-school">Validebağ Fen Lisesi</div><div class="edu-dept">İstanbul</div></div>
+      <div>
+        <div class="edu-school">Validebağ Fen Lisesi</div>
+        <div class="edu-dept">İstanbul</div>
+      </div>
       <div class="edu-year">2019 — 2023</div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="section-wrap" id="skills">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <span class="section-title">Yetenekler</span>
-    <div class="section-accent" style="background:var(--slate);"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-col">
-      <div class="skill-col-title">Diller</div>
-      <div class="skill-item"><div class="skill-name"><span>Kotlin</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Python</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Java</span><span class="skill-pct">65%</span></div><div class="skill-track"><div class="skill-fill" style="width:65%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>HTML/CSS</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:var(--blue);"></div></div></div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">Framework</div>
-      <div class="skill-item"><div class="skill-name"><span>Jetpack Compose</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Room DB</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>RESTful API</span><span class="skill-pct">70%</span></div><div class="skill-track"><div class="skill-fill" style="width:70%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Flask/FastAPI</span><span class="skill-pct">60%</span></div><div class="skill-track"><div class="skill-fill" style="width:60%;background:var(--blue);"></div></div></div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">Araçlar</div>
-      <div class="skill-item"><div class="skill-name"><span>Android Studio</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>Git / GitHub</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>VS Code</span><span class="skill-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--blue);"></div></div></div>
-    </div>
-    <div class="skill-col">
-      <div class="skill-col-title">Diller</div>
-      <div class="skill-item"><div class="skill-name"><span>Türkçe</span><span class="skill-pct">Ana dil</span></div><div class="skill-track"><div class="skill-fill" style="width:100%;background:var(--green);"></div></div></div>
-      <div class="skill-item"><div class="skill-name"><span>İngilizce</span><span class="skill-pct">B1+</span></div><div class="skill-track"><div class="skill-fill" style="width:55%;background:var(--blue);"></div></div></div>
-      <div class="cert-box">
-        <div class="cert-label">Sertifika</div>
-        <div class="cert-name">HCI-E 2025</div>
-        <div class="cert-sub">Certificate of Presentation · Azerbaijan</div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-title">Yetenekler</div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <div class="skill-col-title">Diller</div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Kotlin</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Python</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Java</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">HTML / CSS</div></div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="section-wrap" id="projects">
-  <div class="section-header">
-    <span class="section-num">05</span>
-    <span class="section-title">Projeler</span>
-    <div class="section-accent" style="background:var(--blue);"></div>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-idx">01</div>
-      <div class="project-name">Demans Önleme Uygulaması</div>
-      <div class="project-desc">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
-      <div class="ptags"><span class="ptag">Android</span><span class="ptag">Kotlin</span><span class="ptag">TÜBİTAK</span><span class="ptag">HCI</span></div>
-      <div class="project-pub">📄 HCI-E 2025, Azerbaijan — Yayınlandı</div>
-    </div>
-    <div class="project-card">
-      <div class="project-idx">02</div>
-      <div class="project-name">Recipe AI</div>
-      <div class="project-desc">Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan yapay zeka destekli tarif uygulaması.</div>
-      <div class="ptags"><span class="ptag">Android</span><span class="ptag">Python</span><span class="ptag">RESTful API</span><span class="ptag">AI</span></div>
-    </div>
-    <div class="project-card">
-      <div class="project-idx">03</div>
-      <div class="project-name">Spy Game</div>
-      <div class="project-desc">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu.</div>
-      <div class="ptags"><span class="ptag">Kotlin</span><span class="ptag">Jetpack Compose</span><span class="ptag">Realtime</span></div>
-    </div>
-    <div class="project-card">
-      <div class="project-idx">04</div>
-      <div class="project-name">Expense Tracker</div>
-      <div class="project-desc">Harcama kategorizasyonu, bütçe takibi ve veri görselleştirme özellikli kişisel finans yönetim uygulaması.</div>
-      <div class="ptags"><span class="ptag">Kotlin</span><span class="ptag">Room Database</span><span class="ptag">Android</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="section-wrap" id="contact">
-  <div class="section-header">
-    <span class="section-num">06</span>
-    <span class="section-title">İletişim</span>
-    <div class="section-accent" style="background:var(--blue);"></div>
-  </div>
-  <div class="section-body" style="padding:0;">
-    <div class="contact-grid">
-      <div class="contact-left">
-        <h2>Birlikte<br/><span>çalışalım.</span></h2>
-        <p>Bir proje fikriniz mi var? Staj veya iş birliği teklifleri için her zaman ulaşabilirsiniz. En kısa sürede dönüş yapıyorum.</p>
+      <div class="skill-col">
+        <div class="skill-col-title">Framework</div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Jetpack Compose</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Room DB</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">RESTful API</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Flask / FastAPI</div></div>
       </div>
-      <div class="contact-right">
-        <button class="contact-item" onclick="copyEmail()">
-          <span class="ci-icon">✉</span>
-          <div>
-            <div class="ci-label">E-posta <span class="copy-ok" id="copy-msg"></span></div>
-            <div class="ci-val">oguzeryilmaz4@gmail.com</div>
-          </div>
-        </button>
-        <a href="https://github.com/OguzEryilmazz" target="_blank" class="contact-item">
-          <span class="ci-icon">⌥</span>
-          <div>
-            <div class="ci-label">GitHub</div>
-            <div class="ci-val">OguzEryilmazz</div>
-          </div>
-        </a>
-        <div class="contact-item">
-          <span class="ci-icon">☏</span>
-          <div>
-            <div class="ci-label">Telefon</div>
-            <div class="ci-val">0545 842 14 25</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <span class="ci-icon">◎</span>
-          <div>
-            <div class="ci-label">Konum</div>
-            <div class="ci-val">Çankaya, Ankara</div>
-          </div>
+      <div class="skill-col">
+        <div class="skill-col-title">Araçlar</div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Android Studio</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Git / GitHub</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">VS Code</div></div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-col-title">İnsan Dilleri</div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--green)"></div><div class="skill-name">Türkçe — Ana dil</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">İngilizce — B1+</div></div>
+        <div class="cert-box">
+          <div class="cert-label">Sertifika</div>
+          <div class="cert-name">HCI-E 2025</div>
+          <div class="cert-sub">Certificate of Presentation · Azerbaijan</div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-title">Projeler</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-idx">01</div>
+        <div class="project-name">Demans Önleme Uygulaması</div>
+        <div class="project-desc">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
+        <div class="ptags">
+          <span class="ptag">Android</span><span class="ptag">Kotlin</span>
+          <span class="ptag">TÜBİTAK</span><span class="ptag">HCI</span>
+        </div>
+        <div class="project-pub">📄 HCI-E 2025, Azerbaijan — Yayınlandı</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-idx">02</div>
+        <div class="project-name">Recipe AI</div>
+        <div class="project-desc">Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan yapay zeka destekli tarif uygulaması.</div>
+        <div class="ptags">
+          <span class="ptag">Android</span><span class="ptag">Python</span>
+          <span class="ptag">RESTful API</span><span class="ptag">AI</span>
+        </div>
+      </div>
+
+      <a href="https://play.google.com/store/apps/details?id=com.oguz.spy" target="_blank" class="project-card">
+        <div class="project-idx">03</div>
+        <div class="project-name">Spy Game</div>
+        <div class="project-desc">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu.</div>
+        <div class="ptags">
+          <span class="ptag">Kotlin</span><span class="ptag">Jetpack Compose</span><span class="ptag">Realtime</span>
+        </div>
+        <div class="project-pub">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.97.16l12.4-7.17-2.93-2.93-10.44 9.94zM.5 1.05C.19 1.37 0 1.88 0 2.56v18.88c0 .68.19 1.19.5 1.51l.08.08 10.57-10.57v-.25L.58.97.5 1.05zm20.33 9.17-2.97-1.72-3.27 3.27 3.27 3.27 2.99-1.73c.85-.49.85-1.29-.02-1.79zm-19.65 12.6 12.4-7.18-2.93-2.93-9.47 10.11z"/></svg>
+          Play Store'da İncele →
+        </div>
+      </a>
+
+      <div class="project-card">
+        <div class="project-idx">04</div>
+        <div class="project-name">Expense Tracker</div>
+        <div class="project-desc">Harcama kategorizasyonu, bütçe takibi ve veri görselleştirme özellikli kişisel finans yönetim uygulaması.</div>
+        <div class="ptags">
+          <span class="ptag">Kotlin</span><span class="ptag">Room Database</span><span class="ptag">Android</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-headline">
+      Birlikte<br/><span>çalışalım</span> <span class="wave">✦</span>
+    </div>
+    <p class="contact-sub">Bir proje fikrin mi var? Staj veya iş birliği teklifleri için her zaman ulaşabilirsin. En kısa sürede dönerim.</p>
+    <div class="contact-links">
+
+      <button class="contact-card" onclick="copyEmail()">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">E-posta</div>
+        <div class="cc-val">oguzeryilmaz4@gmail.com</div>
+        <div class="copy-ok" id="copy-msg"></div>
+      </button>
+
+      <a href="https://github.com/OguzEryilmazz" target="_blank" class="contact-card">
+        <div class="cc-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </div>
+        <div class="cc-label">GitHub</div>
+        <div class="cc-val">OguzEryilmazz</div>
+      </a>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Konum</div>
+        <div class="cc-val">Çankaya, Ankara</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Faruk Oğuz Eryılmaz</p>
   <div class="footer-dot"></div>
@@ -561,12 +602,12 @@
   function toggleTheme() {
     var root = document.documentElement;
     var btn = document.getElementById('theme-btn');
-    if (root.getAttribute('data-theme') === 'dark') {
-      root.setAttribute('data-theme', 'light');
-      btn.textContent = '🌙 Dark';
-    } else {
+    if (root.getAttribute('data-theme') === 'light') {
       root.setAttribute('data-theme', 'dark');
       btn.textContent = '☀ Light';
+    } else {
+      root.setAttribute('data-theme', 'light');
+      btn.textContent = '🌙 Dark';
     }
   }
 
