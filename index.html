@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="light">
+<html lang="tr" data-theme="light" data-lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,17 +9,6 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #0f1117;
-      --surface: #1a1f2e;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --blue: #3b82f6;
-      --green: #10b981;
-      --border: #2d3748;
-      --max: 1100px;
-    }
-
-    [data-theme="light"] {
       --bg: #e8ebef;
       --surface: #dde1e7;
       --text: #1e293b;
@@ -27,6 +16,17 @@
       --blue: #2563eb;
       --green: #059669;
       --border: #c8cdd5;
+      --max: 1100px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1117;
+      --surface: #1a1f2e;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --border: #2d3748;
     }
 
     html { scroll-behavior: smooth; }
@@ -63,13 +63,16 @@
       transition: background 0.15s, color 0.15s;
     }
     .nav-links a:hover { background: var(--blue); color: #fff; }
-    .theme-btn {
+    .nav-controls { display: flex; gap: 0.5rem; }
+    .ctrl-btn {
       background: none; border: 1px solid var(--border);
       color: var(--muted); padding: 0.3rem 0.9rem;
       font-family: 'Archivo', sans-serif; font-size: 0.72rem;
       cursor: pointer; border-radius: 4px; transition: all 0.2s;
+      white-space: nowrap;
     }
-    .theme-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .ctrl-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .ctrl-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* HERO */
     #hero {
@@ -126,7 +129,7 @@
       display: inline-block; padding: 0.75rem 1.8rem;
       font-family: 'Archivo', sans-serif; font-size: 0.82rem; font-weight: 500;
       text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em;
-      border-radius: 6px; transition: all 0.15s;
+      border-radius: 6px; transition: all 0.15s; cursor: pointer; border: none;
     }
     .btn-fill { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
     .btn-fill:hover { opacity: 0.88; }
@@ -177,6 +180,8 @@
     .exp-role { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; color: var(--text); }
     .exp-company { font-size: 0.85rem; margin-bottom: 0.6rem; font-weight: 500; color: var(--blue); }
     .exp-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.8; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+    .exp-tag { padding: 0.15rem 0.55rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.68rem; color: var(--muted); }
     .exp-badge {
       padding: 0.25rem 0.85rem; font-size: 0.65rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.06em;
@@ -285,6 +290,10 @@
     @keyframes slideIn{ from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
+    /* HIDDEN/SHOWN by lang */
+    [data-lang="tr"] .en { display: none !important; }
+    [data-lang="en"] .tr { display: none !important; }
+
     /* RESPONSIVE */
     @media(max-width:1024px) {
       :root { --max: 100%; }
@@ -324,21 +333,28 @@
   <div class="nav-inner">
     <div class="nav-logo">FOE ✦</div>
     <ul class="nav-links">
-      <li><a href="#about">Hakkımda</a></li>
-      <li><a href="#experience">Deneyim</a></li>
-      <li><a href="#education">Eğitim</a></li>
-      <li><a href="#skills">Yetenekler</a></li>
-      <li><a href="#projects">Projeler</a></li>
-      <li><a href="#contact">İletişim</a></li>
+      <li><a href="#about"><span class="tr">Hakkımda</span><span class="en">About</span></a></li>
+      <li><a href="#experience"><span class="tr">Deneyim</span><span class="en">Experience</span></a></li>
+      <li><a href="#education"><span class="tr">Eğitim</span><span class="en">Education</span></a></li>
+      <li><a href="#skills"><span class="tr">Yetenekler</span><span class="en">Skills</span></a></li>
+      <li><a href="#projects"><span class="tr">Projeler</span><span class="en">Projects</span></a></li>
+      <li><a href="#contact"><span class="tr">İletişim</span><span class="en">Contact</span></a></li>
     </ul>
-    <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
+    <div class="nav-controls">
+      <button class="ctrl-btn" onclick="setLang('tr')" id="btn-tr">TR</button>
+      <button class="ctrl-btn" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="ctrl-btn" onclick="toggleTheme()" id="theme-btn">🌙 Dark</button>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-main">
-    <div class="hero-tag">Yazılım Mühendisi · Şu an stajda @ Software Persona</div>
+    <div class="hero-tag">
+      <span class="tr">Yazılım Mühendisi</span>
+      <span class="en">Software Engineer</span>
+    </div>
     <div class="hero-layout">
       <div class="hero-text-block">
         <div class="hero-name">
@@ -347,8 +363,12 @@
           <div class="line3">ERYILMAZ</div>
         </div>
         <div class="hero-cta">
-          <a href="#projects" class="btn btn-fill">Projeleri Gör</a>
-          <a href="#contact" class="btn btn-ghost">İletişime Geç</a>
+          <a href="#projects" class="btn btn-fill">
+            <span class="tr">Projeleri Gör</span><span class="en">View Projects</span>
+          </a>
+          <a href="#contact" class="btn btn-ghost">
+            <span class="tr">İletişime Geç</span><span class="en">Get in Touch</span>
+          </a>
         </div>
       </div>
       <div class="hero-photo-wrap">
@@ -359,15 +379,16 @@
   </div>
   <div class="hero-bottom">
     <div>
-      <div class="cell-label">Konum</div>
+      <div class="cell-label"><span class="tr">Konum</span><span class="en">Location</span></div>
       <div class="cell-value">Çankaya, Ankara</div>
     </div>
     <div>
-      <div class="cell-label">Üniversite</div>
-      <div class="cell-value">Ankara Üniversitesi · 3. Sınıf</div>
+      <div class="cell-label"><span class="tr">Üniversite</span><span class="en">University</span></div>
+      <div class="cell-value tr">Ankara Üniversitesi · 3. Sınıf</div>
+      <div class="cell-value en">Ankara University · 3rd Year</div>
     </div>
     <div>
-      <div class="cell-label">Odak Alanı</div>
+      <div class="cell-label"><span class="tr">Odak Alanı</span><span class="en">Focus Area</span></div>
       <div class="cell-value">Android · AI · Mobile</div>
     </div>
   </div>
@@ -376,31 +397,38 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <div class="section-title">Hakkımda</div>
+    <div class="section-title"><span class="tr">Hakkımda</span><span class="en">About Me</span></div>
     <div class="about-grid">
-      <div class="about-text">
+      <div class="about-text tr">
         <p>Ankara Üniversitesi <strong>Yazılım Mühendisliği</strong> bölümünde 3. sınıf öğrencisiyim. Birden fazla projeyi eş zamanlı yönetme ve son tarihlere sadık kalma konusunda deneyimliyim.</p>
-        <p>Şu anda <strong>Software Persona</strong>'da staj yapıyor; <strong>Türk Telekom</strong>'da Mobil Dijital Kanal Çözümleri ekibinde 6 aylık kurumsal staj deneyimi kazandım.</p>
-        <p>TÜBİTAK destekli araştırma projesinde yer aldım ve sonuçlarımı <strong>HCI-E 2025</strong> konferansında Azerbaycan'da sundum.</p>
+        <p><strong>Software Persona</strong>'da Yazılım Staj Programını başarıyla tamamladım (Şubat–Mart 2026). Veri Tabanı & SQL, Web Geliştirme (JavaScript), 3D & Görsel Efekt (Blender) ve Mobil Uygulama Geliştirme (Android / iOS) modüllerini kapsayan kapsamlı bir teknik eğitim deneyimi kazandım.</p>
+        <p><strong>Türk Telekom</strong>'da Mobil Dijital Kanal Çözümleri ekibinde 6 aylık kurumsal staj deneyimi kazandım. TÜBİTAK destekli araştırma projesinde yer aldım ve sonuçlarımı <strong>HCI-E 2025</strong> konferansında Azerbaycan'da sundum.</p>
+      </div>
+      <div class="about-text en">
+        <p>I am a 3rd-year <strong>Software Engineering</strong> student at Ankara University, experienced in managing multiple projects simultaneously while meeting deadlines.</p>
+        <p>I successfully completed the Software Development Internship Program at <strong>Software Persona</strong> (February–March 2026), covering Database & SQL, Web Development (JavaScript), 3D & Visual Effects (Blender), and Mobile Application Development (Android / iOS).</p>
+        <p>I completed a 6-month corporate internship at <strong>Türk Telekom</strong> in the Mobile Digital Channel Solutions team, and presented TÜBİTAK-supported research at <strong>HCI-E 2025</strong> in Azerbaijan.</p>
       </div>
       <div>
         <div class="interest-block">
-          <div class="interest-title">İlgi Alanları</div>
+          <div class="interest-title"><span class="tr">İlgi Alanları</span><span class="en">Interests</span></div>
           <div class="pill-row">
             <span class="pill">Android</span>
-            <span class="pill">Yapay Zeka</span>
-            <span class="pill">Mobil</span>
+            <span class="pill"><span class="tr">Yapay Zeka</span><span class="en">AI</span></span>
+            <span class="pill">Mobile</span>
             <span class="pill">HCI</span>
             <span class="pill">RESTful API</span>
-            <span class="pill">Matematik</span>
+            <span class="pill"><span class="tr">Matematik</span><span class="en">Mathematics</span></span>
+            <span class="pill">UI/UX</span>
+            <span class="pill">Blender</span>
           </div>
         </div>
         <div class="interest-block">
-          <div class="interest-title">Hedefler</div>
+          <div class="interest-title"><span class="tr">Hedefler</span><span class="en">Goals</span></div>
           <div class="pill-row">
             <span class="pill">Full-Stack</span>
-            <span class="pill">AI Ürünleri</span>
-            <span class="pill">Global Kariyer</span>
+            <span class="pill"><span class="tr">AI Ürünleri</span><span class="en">AI Products</span></span>
+            <span class="pill"><span class="tr">Global Kariyer</span><span class="en">Global Career</span></span>
           </div>
         </div>
       </div>
@@ -411,33 +439,58 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="wrap">
-    <div class="section-title">Deneyim</div>
+    <div class="section-title"><span class="tr">Deneyim</span><span class="en">Experience</span></div>
+
+    <!-- Software Persona -->
     <div class="exp-row">
-      <div class="exp-period">2026 — Devam Ediyor</div>
+      <div class="exp-period">Feb 2026 — Mar 2026</div>
       <div>
-        <div class="exp-role">Software Engineering Intern</div>
-        <div class="exp-company">Software Persona</div>
-        <div class="exp-desc">Yazılım geliştirme süreçlerine aktif katkı sağlıyorum. Gerçek dünya projeleri üzerinde mühendislik pratiklerini uyguluyorum.</div>
+        <div class="exp-role tr">Yazılım Stajyeri</div>
+        <div class="exp-role en">Software Engineering Intern</div>
+        <div class="exp-company">Software Persona / TNC Group</div>
+        <div class="exp-desc tr">Veri Tabanı & SQL, Web Geliştirme (JavaScript), 3D & Görsel Efekt (Blender) ve Mobil Uygulama Geliştirme (Android / iOS) modüllerini başarıyla tamamladım. Arayüz tasarımı, web bileşenleri, veri tabanı yapısı ve mobil uygulama prototiplemeyi bütünleştiren uygulamalı bir yazılım projesi teslim ettim.</div>
+        <div class="exp-desc en">Successfully completed modules in Database & SQL, Web Development (JavaScript), 3D & Visual Effects (Blender), and Mobile Application Development (Android / iOS). Delivered a practical software project integrating interface design, web components, database structure, and mobile application prototyping — demonstrating strong analytical thinking, creativity, and technical capability.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">JavaScript</span>
+          <span class="exp-tag">SQL</span>
+          <span class="exp-tag">Blender</span>
+          <span class="exp-tag">Android</span>
+          <span class="exp-tag">iOS</span>
+          <span class="exp-tag">UI/UX</span>
+        </div>
       </div>
-      <div class="exp-badge" style="background:rgba(16,185,129,0.15);color:var(--green);">Aktif</div>
+      <div class="exp-badge">1 <span class="tr">Ay</span><span class="en">Mo</span></div>
     </div>
+
+    <!-- Türk Telekom -->
     <div class="exp-row">
-      <div class="exp-period">Mar 2025 — Eki 2025</div>
+      <div class="exp-period">Mar 2025 — Oct 2025</div>
       <div>
-        <div class="exp-role">Stajyer — Mobil Dijital Kanal Çözümleri</div>
+        <div class="exp-role tr">Stajyer — Mobil Dijital Kanal Çözümleri</div>
+        <div class="exp-role en">Intern — Mobile Digital Channel Solutions</div>
         <div class="exp-company">Türk Telekom</div>
-        <div class="exp-desc">Mobil uygulama geliştirme süreçlerine katkı sağladım. Kurumsal ölçekte yazılım mühendisliği deneyimi kazandım.</div>
+        <div class="exp-desc tr">Mobil uygulama geliştirme süreçlerine katkı sağladım. Kurumsal ölçekte yazılım mühendisliği deneyimi kazandım.</div>
+        <div class="exp-desc en">Contributed to mobile application development processes. Gained corporate-scale software engineering experience.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">Android</span>
+          <span class="exp-tag">Kotlin</span>
+          <span class="exp-tag">Mobile</span>
+        </div>
       </div>
-      <div class="exp-badge">6 Ay</div>
+      <div class="exp-badge">6 <span class="tr">Ay</span><span class="en">Mo</span></div>
     </div>
+
+    <!-- Nesin -->
     <div class="exp-row">
-      <div class="exp-period">Eyl — Kas 2024</div>
+      <div class="exp-period">Sep — Nov 2024</div>
       <div>
-        <div class="exp-role">Gönüllü</div>
-        <div class="exp-company">Nesin Matematik Köyü</div>
-        <div class="exp-desc">Matematik eğitimi ve topluluk etkinliklerinde gönüllü olarak destek sağladım.</div>
+        <div class="exp-role tr">Gönüllü</div>
+        <div class="exp-role en">Volunteer</div>
+        <div class="exp-company">Nesin <span class="tr">Matematik Köyü</span><span class="en">Mathematics Village</span></div>
+        <div class="exp-desc tr">Matematik eğitimi ve topluluk etkinliklerinde gönüllü olarak destek sağladım.</div>
+        <div class="exp-desc en">Provided volunteer support in mathematics education and community activities.</div>
       </div>
-      <div class="exp-badge">2 Ay</div>
+      <div class="exp-badge">2 <span class="tr">Ay</span><span class="en">Mo</span></div>
     </div>
   </div>
 </section>
@@ -445,17 +498,18 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="wrap">
-    <div class="section-title">Eğitim</div>
+    <div class="section-title"><span class="tr">Eğitim</span><span class="en">Education</span></div>
     <div class="edu-row">
       <div>
-        <div class="edu-school">Ankara Üniversitesi</div>
-        <div class="edu-dept">Yazılım Mühendisliği · 3. Sınıf</div>
+        <div class="edu-school">Ankara <span class="tr">Üniversitesi</span><span class="en">University</span></div>
+        <div class="edu-dept tr">Yazılım Mühendisliği · 3. Sınıf</div>
+        <div class="edu-dept en">Software Engineering · 3rd Year</div>
       </div>
       <div class="edu-year">2023 — 2027</div>
     </div>
     <div class="edu-row">
       <div>
-        <div class="edu-school">Validebağ Fen Lisesi</div>
+        <div class="edu-school">Validebağ <span class="tr">Fen Lisesi</span><span class="en">Science High School</span></div>
         <div class="edu-dept">İstanbul</div>
       </div>
       <div class="edu-year">2019 — 2023</div>
@@ -466,14 +520,16 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
-    <div class="section-title">Yetenekler</div>
+    <div class="section-title"><span class="tr">Yetenekler</span><span class="en">Skills</span></div>
     <div class="skills-grid">
       <div class="skill-col">
-        <div class="skill-col-title">Diller</div>
+        <div class="skill-col-title"><span class="tr">Diller</span><span class="en">Languages</span></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Kotlin</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Python</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Java</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">JavaScript</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">HTML / CSS</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">SQL</div></div>
       </div>
       <div class="skill-col">
         <div class="skill-col-title">Framework</div>
@@ -483,17 +539,24 @@
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Flask / FastAPI</div></div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Araçlar</div>
+        <div class="skill-col-title"><span class="tr">Araçlar</span><span class="en">Tools</span></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Android Studio</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Git / GitHub</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Blender</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">VS Code</div></div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">İnsan Dilleri</div>
-        <div class="skill-item"><div class="skill-dot" style="background:var(--green)"></div><div class="skill-name">Türkçe — Ana dil</div></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">İngilizce — B1+</div></div>
+        <div class="skill-col-title"><span class="tr">İnsan Dilleri</span><span class="en">Languages</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--green)"></div><div class="skill-name tr">Türkçe — Ana dil</div><div class="skill-name en">Turkish — Native</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name tr">İngilizce — B1+</div><div class="skill-name en">English — B1+</div></div>
         <div class="cert-box">
-          <div class="cert-label">Sertifika</div>
+          <div class="cert-label"><span class="tr">Sertifikalar</span><span class="en">Certificates</span></div>
+          <div class="cert-name">Software Persona — TNC Group</div>
+          <div class="cert-sub tr">Yazılım Stajı Katılım Sertifikası · 2026</div>
+          <div class="cert-sub en">Software Internship Certificate · 2026</div>
+        </div>
+        <div class="cert-box" style="margin-top:0.6rem;">
+          <div class="cert-label"><span class="tr">Konferans</span><span class="en">Conference</span></div>
           <div class="cert-name">HCI-E 2025</div>
           <div class="cert-sub">Certificate of Presentation · Azerbaijan</div>
         </div>
@@ -505,24 +568,27 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
-    <div class="section-title">Projeler</div>
+    <div class="section-title"><span class="tr">Projeler</span><span class="en">Projects</span></div>
     <div class="projects-grid">
 
       <div class="project-card">
         <div class="project-idx">01</div>
-        <div class="project-name">Demans Önleme Uygulaması</div>
-        <div class="project-desc">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
+        <div class="project-name tr">Demans Önleme Uygulaması</div>
+        <div class="project-name en">Dementia Prevention App</div>
+        <div class="project-desc tr">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
+        <div class="project-desc en">A mobile application featuring cognitive exercises designed to slow the progression of dementia. Developed with TÜBİTAK 2209-A support.</div>
         <div class="ptags">
           <span class="ptag">Android</span><span class="ptag">Kotlin</span>
           <span class="ptag">TÜBİTAK</span><span class="ptag">HCI</span>
         </div>
-        <div class="project-pub">📄 HCI-E 2025, Azerbaijan — Yayınlandı</div>
+        <div class="project-pub">📄 HCI-E 2025, Azerbaijan — <span class="tr">Yayınlandı</span><span class="en">Published</span></div>
       </div>
 
       <div class="project-card">
         <div class="project-idx">02</div>
         <div class="project-name">Recipe AI</div>
-        <div class="project-desc">Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan yapay zeka destekli tarif uygulaması.</div>
+        <div class="project-desc tr">Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan yapay zeka destekli tarif uygulaması.</div>
+        <div class="project-desc en">AI-powered recipe application with an Android frontend and Python backend offering personalized recommendations.</div>
         <div class="ptags">
           <span class="ptag">Android</span><span class="ptag">Python</span>
           <span class="ptag">RESTful API</span><span class="ptag">AI</span>
@@ -532,20 +598,22 @@
       <a href="https://play.google.com/store/apps/details?id=com.oguz.spy" target="_blank" class="project-card">
         <div class="project-idx">03</div>
         <div class="project-name">Spy Game</div>
-        <div class="project-desc">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu.</div>
+        <div class="project-desc tr">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu.</div>
+        <div class="project-desc en">A multiplayer social deduction game with real-time gameplay and an interactive interface.</div>
         <div class="ptags">
           <span class="ptag">Kotlin</span><span class="ptag">Jetpack Compose</span><span class="ptag">Realtime</span>
         </div>
         <div class="project-pub">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.97.16l12.4-7.17-2.93-2.93-10.44 9.94zM.5 1.05C.19 1.37 0 1.88 0 2.56v18.88c0 .68.19 1.19.5 1.51l.08.08 10.57-10.57v-.25L.58.97.5 1.05zm20.33 9.17-2.97-1.72-3.27 3.27 3.27 3.27 2.99-1.73c.85-.49.85-1.29-.02-1.79zm-19.65 12.6 12.4-7.18-2.93-2.93-9.47 10.11z"/></svg>
-          Play Store'da İncele →
+          <span class="tr">Play Store'da İncele →</span><span class="en">View on Play Store →</span>
         </div>
       </a>
 
       <div class="project-card">
         <div class="project-idx">04</div>
         <div class="project-name">Expense Tracker</div>
-        <div class="project-desc">Harcama kategorizasyonu, bütçe takibi ve veri görselleştirme özellikli kişisel finans yönetim uygulaması.</div>
+        <div class="project-desc tr">Harcama kategorizasyonu, bütçe takibi ve veri görselleştirme özellikli kişisel finans yönetim uygulaması.</div>
+        <div class="project-desc en">A personal finance management app with expense categorization, budget tracking, and data visualization.</div>
         <div class="ptags">
           <span class="ptag">Kotlin</span><span class="ptag">Room Database</span><span class="ptag">Android</span>
         </div>
@@ -558,15 +626,19 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-wrap">
-    <div class="contact-headline">
+    <div class="contact-headline tr">
       Birlikte<br/><span>çalışalım</span> <span class="wave">✦</span>
     </div>
-    <p class="contact-sub">Bir proje fikrin mi var? Staj veya iş birliği teklifleri için her zaman ulaşabilirsin. En kısa sürede dönerim.</p>
+    <div class="contact-headline en">
+      Let's work<br/><span>together</span> <span class="wave">✦</span>
+    </div>
+    <p class="contact-sub tr">Bir proje fikrin mi var? Staj veya iş birliği teklifleri için her zaman ulaşabilirsin. En kısa sürede dönerim.</p>
+    <p class="contact-sub en">Got a project idea? Feel free to reach out for internship or collaboration opportunities. I'll get back to you as soon as possible.</p>
     <div class="contact-links">
 
       <button class="contact-card" onclick="copyEmail()">
         <div class="cc-icon">✉️</div>
-        <div class="cc-label">E-posta</div>
+        <div class="cc-label"><span class="tr">E-posta</span><span class="en">Email</span></div>
         <div class="cc-val">oguzeryilmaz4@gmail.com</div>
         <div class="copy-ok" id="copy-msg"></div>
       </button>
@@ -583,7 +655,7 @@
 
       <div class="contact-card" style="cursor:default;">
         <div class="cc-icon">📍</div>
-        <div class="cc-label">Konum</div>
+        <div class="cc-label"><span class="tr">Konum</span><span class="en">Location</span></div>
         <div class="cc-val">Çankaya, Ankara</div>
       </div>
 
@@ -595,10 +667,20 @@
 <footer>
   <p>© 2026 Faruk Oğuz Eryılmaz</p>
   <div class="footer-dot"></div>
-  <p>Yazılım Mühendisi · Ankara Üniversitesi</p>
+  <p class="tr">Yazılım Mühendisi · Ankara Üniversitesi</p>
+  <p class="en">Software Engineer · Ankara University</p>
 </footer>
 
 <script>
+  // Default: TR active
+  document.getElementById('btn-tr').classList.add('active');
+
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
   function toggleTheme() {
     var root = document.documentElement;
     var btn = document.getElementById('theme-btn');
@@ -614,7 +696,8 @@
   function copyEmail() {
     navigator.clipboard.writeText('oguzeryilmaz4@gmail.com').then(function() {
       var m = document.getElementById('copy-msg');
-      m.textContent = '✓ Kopyalandı';
+      var lang = document.documentElement.getAttribute('data-lang');
+      m.textContent = lang === 'en' ? '✓ Copied' : '✓ Kopyalandı';
       setTimeout(function(){ m.textContent = ''; }, 2000);
     });
   }
