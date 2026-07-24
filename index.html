@@ -170,7 +170,7 @@
     }
     .pill:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-    /* EXPERIENCE */
+    /* ROW ITEMS */
     .exp-row {
       display: grid; grid-template-columns: 170px 1fr auto;
       gap: 2rem; align-items: start; padding: 2rem 0;
@@ -206,13 +206,6 @@
     .skill-item { margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
     .skill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
     .skill-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
-    .cert-box {
-      margin-top: 1.2rem; padding: 1rem; border-radius: 8px;
-      border: 1px solid var(--blue); background: rgba(59,130,246,0.08);
-    }
-    .cert-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.25rem; }
-    .cert-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
-    .cert-sub { font-size: 0.75rem; color: var(--muted); }
 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -233,6 +226,13 @@
     .ptags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
     .ptag { padding: 0.2rem 0.65rem; border: 1px solid var(--border); border-radius: 20px; font-size: 0.7rem; color: var(--muted); }
     .project-pub { font-size: 0.75rem; font-weight: 600; color: var(--blue); display: flex; align-items: center; gap: 0.4rem; }
+    .store-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.4rem; }
+    .store-link {
+      font-size: 0.75rem; font-weight: 600; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      text-decoration: none; padding: 0.3rem 0; position: relative; z-index: 2;
+    }
+    .store-link:hover { text-decoration: underline; }
 
     /* CONTACT */
     .contact-wrap {
@@ -328,7 +328,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">FOE ✦</div>
@@ -337,6 +336,7 @@
       <li><a href="#experience"><span class="tr">Deneyim</span><span class="en">Experience</span></a></li>
       <li><a href="#education"><span class="tr">Eğitim</span><span class="en">Education</span></a></li>
       <li><a href="#skills"><span class="tr">Yetenekler</span><span class="en">Skills</span></a></li>
+      <li><a href="#certificates"><span class="tr">Sertifikalar</span><span class="en">Certificates</span></a></li>
       <li><a href="#projects"><span class="tr">Projeler</span><span class="en">Projects</span></a></li>
       <li><a href="#contact"><span class="tr">İletişim</span><span class="en">Contact</span></a></li>
     </ul>
@@ -348,7 +348,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-main">
     <div class="hero-tag">
@@ -394,31 +393,30 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="section-title"><span class="tr">Hakkımda</span><span class="en">About Me</span></div>
     <div class="about-grid">
       <div class="about-text tr">
         <p>Ankara Üniversitesi <strong>Yazılım Mühendisliği</strong> bölümünde 3. sınıf öğrencisiyim. Birden fazla projeyi eş zamanlı yönetme ve son tarihlere sadık kalma konusunda deneyimliyim.</p>
-        <p><strong>Software Persona</strong>'da Yazılım Staj Programını başarıyla tamamladım (Şubat–Mart 2026). Veri Tabanı & SQL, Web Geliştirme (JavaScript), 3D & Görsel Efekt (Blender) ve Mobil Uygulama Geliştirme (Android / iOS) modüllerini kapsayan kapsamlı bir teknik eğitim deneyimi kazandım.</p>
-        <p><strong>Türk Telekom</strong>'da Mobil Dijital Kanal Çözümleri ekibinde 6 aylık kurumsal staj deneyimi kazandım. TÜBİTAK destekli araştırma projesinde yer aldım ve sonuçlarımı <strong>HCI-E 2025</strong> konferansında Azerbaycan'da sundum.</p>
+        <p>Ayrıca, mobil uygulama arayüz tasarımı (UI/UX) ve <strong>üretken yapay zeka (GenAI)</strong> ile prompt mühendisliği konularına yoğun ilgi duyuyorum. Python ve Kotlin kullanarak algoritmik problem çözme (LeetCode) pratikleri yapıyor, projelerimde <strong>Google Cloud Run</strong> ve <strong>n8n</strong> gibi bulut tabanlı arka uç teknolojilerini aktif olarak kullanıyorum.</p>
+        <p><strong>Software Persona</strong> ve <strong>Türk Telekom</strong>'da edindiğim yazılım stajı deneyimlerinin yanı sıra, TÜBİTAK destekli sağlık teknolojileri araştırma projemi <strong>HCI-E 2025</strong> konferansında Azerbaycan'da sundum.</p>
       </div>
       <div class="about-text en">
         <p>I am a 3rd-year <strong>Software Engineering</strong> student at Ankara University, experienced in managing multiple projects simultaneously while meeting deadlines.</p>
-        <p>I successfully completed the Software Development Internship Program at <strong>Software Persona</strong> (February–March 2026), covering Database & SQL, Web Development (JavaScript), 3D & Visual Effects (Blender), and Mobile Application Development (Android / iOS).</p>
-        <p>I completed a 6-month corporate internship at <strong>Türk Telekom</strong> in the Mobile Digital Channel Solutions team, and presented TÜBİTAK-supported research at <strong>HCI-E 2025</strong> in Azerbaijan.</p>
+        <p>Furthermore, I have a strong interest in mobile UI/UX design and <strong>generative AI (GenAI)</strong> alongside prompt engineering. I continuously hone my algorithmic problem-solving skills (LeetCode) using Python and Kotlin, and actively utilize cloud-based backend technologies like <strong>Google Cloud Run</strong> and <strong>n8n</strong> in my projects.</p>
+        <p>Alongside my software engineering internships at <strong>Software Persona</strong> and <strong>Türk Telekom</strong>, I presented my TÜBİTAK-supported health-tech research project at the <strong>HCI-E 2025</strong> conference in Azerbaijan.</p>
       </div>
       <div>
         <div class="interest-block">
           <div class="interest-title"><span class="tr">İlgi Alanları</span><span class="en">Interests</span></div>
           <div class="pill-row">
             <span class="pill">Android</span>
-            <span class="pill"><span class="tr">Yapay Zeka</span><span class="en">AI</span></span>
+            <span class="pill"><span class="tr">Yapay Zeka</span><span class="en">GenAI</span></span>
             <span class="pill">Mobile</span>
             <span class="pill">HCI</span>
             <span class="pill">RESTful API</span>
-            <span class="pill"><span class="tr">Matematik</span><span class="en">Mathematics</span></span>
+            <span class="pill">Algoritma</span>
             <span class="pill">UI/UX</span>
             <span class="pill">Blender</span>
           </div>
@@ -436,14 +434,35 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="wrap">
     <div class="section-title"><span class="tr">Deneyim</span><span class="en">Experience</span></div>
 
-    <!-- Software Persona -->
     <div class="exp-row">
-      <div class="exp-period">Feb 2026 — Mar 2026</div>
+      <div class="exp-period"><span class="tr">Temmuz 2026 — Ağustos 2026</span><span class="en">Jul 2026 — Aug 2026</span></div>
+      <div>
+        <div class="exp-role tr">CRM Analytics and Solutions Stajyeri</div>
+        <div class="exp-role en">CRM Analytics and Solutions Intern</div>
+        <div class="exp-company">Digiturk</div>
+        <div class="exp-desc tr">
+          CRM Analytics and Solutions biriminde, n8n tabanlı bir akıllı çağrı/sorun tahmin sistemi üzerinde çalıştım; LightGBM, XGBoost ve SARIMAX kullanarak Python tabanlı bir sınıflandırma/tahmin modülü geliştirdim. Ayrıca büyük ölçekli ticket/case verisi üzerinde SQL ve Python (pandas) ile anomali tespiti analizi yürüttüm. Frontend tarafında React ve kurum içi (in-house) component kütüphanesiyle yeni bir ekran geliştirdim; süreçte GitHub Copilot ve özelleştirilmiş AI code-review ajanlarının kurumsal ölçekte nasıl standartlaştırıldığını yakından gördüm.
+        </div>
+        <div class="exp-desc en">
+          Worked in the CRM Analytics and Solutions team on an n8n-based intelligent call/issue prediction system, building a Python classification/forecasting module using LightGBM, XGBoost, and SARIMAX. Also carried out an anomaly detection analysis on large-scale ticket/case data using SQL and Python (pandas). On the frontend, built a new screen with React and the team's in-house component library, and got hands-on exposure to how GitHub Copilot and custom AI code-review agents are standardized at enterprise scale.
+        </div>
+        <div class="exp-tags">
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">SQL</span>
+          <span class="exp-tag">n8n</span>
+          <span class="exp-tag">Machine Learning</span>
+          <span class="exp-tag">React</span>
+        </div>
+      </div>
+      <div class="exp-badge">1 <span class="tr">Ay</span><span class="en">Mo</span></div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period"><span class="tr">Şubat 2026 — Mart 2026</span><span class="en">Feb 2026 — Mar 2026</span></div>
       <div>
         <div class="exp-role tr">Yazılım Stajyeri</div>
         <div class="exp-role en">Software Engineering Intern</div>
@@ -462,9 +481,8 @@
       <div class="exp-badge">1 <span class="tr">Ay</span><span class="en">Mo</span></div>
     </div>
 
-    <!-- Türk Telekom -->
     <div class="exp-row">
-      <div class="exp-period">Mar 2025 — Oct 2025</div>
+      <div class="exp-period"><span class="tr">Mart 2025 — Ekim 2025</span><span class="en">Mar 2025 — Oct 2025</span></div>
       <div>
         <div class="exp-role tr">Stajyer — Mobil Dijital Kanal Çözümleri</div>
         <div class="exp-role en">Intern — Mobile Digital Channel Solutions</div>
@@ -480,9 +498,8 @@
       <div class="exp-badge">6 <span class="tr">Ay</span><span class="en">Mo</span></div>
     </div>
 
-    <!-- Nesin -->
     <div class="exp-row">
-      <div class="exp-period">Sep — Nov 2024</div>
+      <div class="exp-period"><span class="tr">Eylül — Kasım 2024</span><span class="en">Sep — Nov 2024</span></div>
       <div>
         <div class="exp-role tr">Gönüllü</div>
         <div class="exp-role en">Volunteer</div>
@@ -495,7 +512,6 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section id="education">
   <div class="wrap">
     <div class="section-title"><span class="tr">Eğitim</span><span class="en">Education</span></div>
@@ -517,7 +533,6 @@
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
     <div class="section-title"><span class="tr">Yetenekler</span><span class="en">Skills</span></div>
@@ -528,44 +543,99 @@
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Python</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Java</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">JavaScript</div></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">HTML / CSS</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">SQL</div></div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title">Framework</div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Jetpack Compose</div></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Room DB</div></div>
+        <div class="skill-col-title">Backend & Cloud</div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">RESTful API</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Flask / FastAPI</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Google Cloud Run</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">n8n Hosting</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Room DB</div></div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title"><span class="tr">Araçlar</span><span class="en">Tools</span></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Android Studio</div></div>
+        <div class="skill-col-title"><span class="tr">Araçlar & Uzmanlık</span><span class="en">Tools & Expertise</span></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Android Studio / Jetpack</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">GenAI & Prompt Eng.</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">UI / UX Tasarım</div></div>
+        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Algoritma (LeetCode)</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Git / GitHub</div></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">Blender</div></div>
-        <div class="skill-item"><div class="skill-dot"></div><div class="skill-name">VS Code</div></div>
       </div>
       <div class="skill-col">
-        <div class="skill-col-title"><span class="tr">İnsan Dilleri</span><span class="en">Languages</span></div>
+        <div class="skill-col-title"><span class="tr">İnsan Dilleri</span><span class="en">Human Languages</span></div>
         <div class="skill-item"><div class="skill-dot" style="background:var(--green)"></div><div class="skill-name tr">Türkçe — Ana dil</div><div class="skill-name en">Turkish — Native</div></div>
         <div class="skill-item"><div class="skill-dot"></div><div class="skill-name tr">İngilizce — B1+</div><div class="skill-name en">English — B1+</div></div>
-        <div class="cert-box">
-          <div class="cert-label"><span class="tr">Sertifikalar</span><span class="en">Certificates</span></div>
-          <div class="cert-name">Software Persona — TNC Group</div>
-          <div class="cert-sub tr">Yazılım Stajı Katılım Sertifikası · 2026</div>
-          <div class="cert-sub en">Software Internship Certificate · 2026</div>
-        </div>
-        <div class="cert-box" style="margin-top:0.6rem;">
-          <div class="cert-label"><span class="tr">Konferans</span><span class="en">Conference</span></div>
-          <div class="cert-name">HCI-E 2025</div>
-          <div class="cert-sub">Certificate of Presentation · Azerbaijan</div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="section-title"><span class="tr">Sertifikalar</span><span class="en">Certificates</span></div>
+
+    <div class="exp-row">
+      <div class="exp-period"><span class="tr">6 Nisan 2026</span><span class="en">Apr 6, 2026</span></div>
+      <div>
+        <div class="exp-role">FAB SPARK FELLOWSHIP FEB'26</div>
+        <div class="exp-company">FAB</div>
+        <div class="exp-desc tr">Proje, girişimcilik ve yapay zeka zihniyeti odaklı 4 haftalık program.</div>
+        <div class="exp-desc en">A four-week program focused on project, startup and AI mindset.</div>
+        <div class="exp-tags">
+          <span class="exp-tag">ID: 000070</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">2026</div>
+      <div>
+        <div class="exp-role tr">Yazılım Stajı Katılım Sertifikası</div>
+        <div class="exp-role en">Software Internship Certificate</div>
+        <div class="exp-company">Software Persona — TNC Group</div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">2025</div>
+      <div>
+        <div class="exp-role">Certificate of Presentation</div>
+        <div class="exp-company">HCI-E 2025</div>
+        <div class="exp-desc tr">Azerbaycan'da gerçekleşen konferans katılımı.</div>
+        <div class="exp-desc en">Participation in the conference held in Azerbaijan.</div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period"><span class="tr">31 Mayıs 2026</span><span class="en">May 31, 2026</span></div>
+      <div>
+        <div class="exp-role tr">Prompt Mühendisliği — Başarı Belgesi</div>
+        <div class="exp-role en">Prompt Engineering — Certificate of Achievement</div>
+        <div class="exp-company">Turkcell Akademi — Geleceği Yazanlar</div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period"><span class="tr">20 Mayıs 2026</span><span class="en">May 20, 2026</span></div>
+      <div>
+        <div class="exp-role tr">Temel Network Eğitimi — Başarı Belgesi</div>
+        <div class="exp-role en">Basic Networking Training — Certificate of Achievement</div>
+        <div class="exp-company">Turkcell Akademi — Geleceği Yazanlar</div>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-period">2026</div>
+      <div>
+        <div class="exp-role tr">Profesyonel Hayata Giriş Sertifikası</div>
+        <div class="exp-role en">Introduction to Professional Life Certificate</div>
+        <div class="exp-company">Turkcell Akademi — GNÇYTNK Programı</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section id="projects">
   <div class="wrap">
     <div class="section-title"><span class="tr">Projeler</span><span class="en">Projects</span></div>
@@ -575,11 +645,12 @@
         <div class="project-idx">01</div>
         <div class="project-name tr">Demans Önleme Uygulaması</div>
         <div class="project-name en">Dementia Prevention App</div>
-        <div class="project-desc tr">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
-        <div class="project-desc en">A mobile application featuring cognitive exercises designed to slow the progression of dementia. Developed with TÜBİTAK 2209-A support.</div>
+        <div class="project-desc tr">Demansın ilerlemesini yavaşlatmaya yönelik bilişsel egzersizler içeren sağlık teknolojisi (health-tech) odaklı mobil uygulama. TÜBİTAK 2209-A desteğiyle geliştirildi.</div>
+        <div class="project-desc en">A health-tech mobile application featuring cognitive exercises designed to slow the progression of dementia. Developed with TÜBİTAK 2209-A support.</div>
         <div class="ptags">
           <span class="ptag">Android</span><span class="ptag">Kotlin</span>
-          <span class="ptag">TÜBİTAK</span><span class="ptag">HCI</span>
+          <span class="ptag">UI/UX</span><span class="ptag">Health-Tech</span>
+          <span class="ptag">TÜBİTAK</span>
         </div>
         <div class="project-pub">📄 HCI-E 2025, Azerbaijan — <span class="tr">Yayınlandı</span><span class="en">Published</span></div>
       </div>
@@ -587,27 +658,34 @@
       <div class="project-card">
         <div class="project-idx">02</div>
         <div class="project-name">Recipe AI</div>
-        <div class="project-desc tr">Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan yapay zeka destekli tarif uygulaması.</div>
-        <div class="project-desc en">AI-powered recipe application with an Android frontend and Python backend offering personalized recommendations.</div>
+        <div class="project-desc tr">Üretken yapay zeka (GenAI) ile entegre edilmiş, Android ön yüzü ve Python arka ucu ile kişiselleştirilmiş öneri sunan tarif uygulaması.</div>
+        <div class="project-desc en">AI-powered recipe application with an Android frontend and Python backend offering personalized recommendations using GenAI.</div>
         <div class="ptags">
+          <span class="ptag">GenAI</span><span class="ptag">Prompt Eng.</span>
           <span class="ptag">Android</span><span class="ptag">Python</span>
-          <span class="ptag">RESTful API</span><span class="ptag">AI</span>
+          <span class="ptag">RESTful API</span>
         </div>
       </div>
 
-      <a href="https://play.google.com/store/apps/details?id=com.oguz.spy" target="_blank" class="project-card">
+      <div class="project-card">
         <div class="project-idx">03</div>
         <div class="project-name">Spy Game</div>
-        <div class="project-desc tr">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu.</div>
-        <div class="project-desc en">A multiplayer social deduction game with real-time gameplay and an interactive interface.</div>
+        <div class="project-desc tr">Gerçek zamanlı oynanış ve etkileşimli arayüz içeren çok oyunculu sosyal çıkarım oyunu. Android ve iOS'ta yayında.</div>
+        <div class="project-desc en">A multiplayer social deduction game with real-time gameplay and an interactive interface. Live on Android and iOS.</div>
         <div class="ptags">
-          <span class="ptag">Kotlin</span><span class="ptag">Jetpack Compose</span><span class="ptag">Realtime</span>
+          <span class="ptag">Flutter</span><span class="ptag">Dart</span><span class="ptag">Realtime</span>
         </div>
-        <div class="project-pub">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.97.16l12.4-7.17-2.93-2.93-10.44 9.94zM.5 1.05C.19 1.37 0 1.88 0 2.56v18.88c0 .68.19 1.19.5 1.51l.08.08 10.57-10.57v-.25L.58.97.5 1.05zm20.33 9.17-2.97-1.72-3.27 3.27 3.27 3.27 2.99-1.73c.85-.49.85-1.29-.02-1.79zm-19.65 12.6 12.4-7.18-2.93-2.93-9.47 10.11z"/></svg>
-          <span class="tr">Play Store'da İncele →</span><span class="en">View on Play Store →</span>
+        <div class="store-links">
+          <a href="https://apps.apple.com/tr/app/spy-haini-bul/id6774738516?l=tr" target="_blank" class="store-link">
+            <svg width="13" height="13" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141 4 184.8 4 273.7c0 26.4 4.8 53.7 14.5 81.9 12.9 37.3 59.6 128.6 108.3 127.1 25.4-.6 43.4-18 76.5-18 32.1 0 48.7 18 76.9 18 49.1-.7 91.3-83.7 103.6-121.1-65.9-31.1-63.9-91-65.1-92.9zM255.3 90.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.2 2 49.6-11.2 69.5-34.3z"/></svg>
+            <span class="tr">App Store'da İncele</span><span class="en">View on App Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.oguz.spy" target="_blank" class="store-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.97.16l12.4-7.17-2.93-2.93-10.44 9.94zM.5 1.05C.19 1.37 0 1.88 0 2.56v18.88c0 .68.19 1.19.5 1.51l.08.08 10.57-10.57v-.25L.58.97.5 1.05zm20.33 9.17-2.97-1.72-3.27 3.27 3.27 3.27 2.99-1.73c.85-.49.85-1.29-.02-1.79zm-19.65 12.6 12.4-7.18-2.93-2.93-9.47 10.11z"/></svg>
+            <span class="tr">Google Play'de İncele</span><span class="en">View on Google Play</span>
+          </a>
         </div>
-      </a>
+      </div>
 
       <div class="project-card">
         <div class="project-idx">04</div>
@@ -623,7 +701,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-wrap">
     <div class="contact-headline tr">
@@ -663,7 +740,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 Faruk Oğuz Eryılmaz</p>
   <div class="footer-dot"></div>
